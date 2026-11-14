@@ -13,7 +13,7 @@
   const t = (s, v) => I.t(s, v);
 
   const KEY = "scholink.global.v1";
-  const APP_ROUTES = ["dashboard", "matches", "report", "indonesia", "plan", "settings"];
+  const APP_ROUTES = ["dashboard", "matches", "universities", "report", "indonesia", "plan", "settings"];
   const SITE_ROUTES = ["home", "destinations", "scholarships", "costs", "impact"];
 
   const DEFAULT_DRAFT = {
@@ -54,6 +54,9 @@
     planTarget: null,
     matchFilter: "all",
     matchSort: "score",
+    uniFilter: "all",
+    uniDest: "all",
+    uniMatches: [],
     drawer: null,
     saver: false,
   };
@@ -172,7 +175,9 @@
   function renderDrawer() {
     const dr = document.getElementById("drawer");
     if (!state.drawer) return;
-    const html = state.drawer.type === "scholarship" ? A.drawerScholarship(state) : A.drawerDestination(state);
+    const html = state.drawer.type === "scholarship" ? A.drawerScholarship(state) :
+                 state.drawer.type === "university" ? A.drawerUniversity(state) :
+                 A.drawerDestination(state);
     dr.innerHTML = html;
   }
 
@@ -344,6 +349,7 @@
       case "dest-region": state.destRegion = el.getAttribute("data-value"); render(); break;
       case "open-scholarship": openDrawer("scholarship", id); break;
       case "open-destination": openDrawer("destination", id); break;
+      case "open-university": openDrawer("university", id); break;
       case "close-drawer": closeDrawer(true); break;
       case "close-modal": closeModal(); break;
       case "calc-level": state.calc.level = el.getAttribute("data-value"); render(); break;
@@ -387,6 +393,8 @@
         break;
       }
       case "match-filter": state.matchFilter = el.getAttribute("data-value"); render(); break;
+      case "uni-filter": state.uniFilter = el.getAttribute("data-value"); render(); break;
+      case "uni-dest": state.uniDest = el.getAttribute("data-value"); render(); break;
       case "export": exportPlan(); break;
       case "clear": confirmClear(); break;
       case "clear-confirm": clearAll(); break;
@@ -413,6 +421,8 @@
       if (action === "currency") { I.setCurrency(el.value); save(); render(); return; }
       if (action === "saver" && el.type === "checkbox") { state.saver = el.checked; document.body.classList.toggle("saver", state.saver); save(); render(); return; }
       if (action === "match-sort") { state.matchSort = el.value; render(); return; }
+      if (action === "uni-dest") { state.uniDest = el.value; render(); return; }
+      if (action === "uni-filter") { state.uniFilter = el.getAttribute("data-value"); render(); return; }
       if (action === "save" && el.type === "checkbox") { handleAction(el); return; }
       if (action === "test-status") {
         var testId = el.getAttribute("data-test");

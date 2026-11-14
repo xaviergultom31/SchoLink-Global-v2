@@ -701,3 +701,69 @@ body.hemat .topbar { backdrop-filter: none; background: #f4f7fb; }
   .mc-main { min-width: 0; }
   .mc-title { font-size: 14.6px; }
 }
+
+/* =========================================================================
+   Phase 2 — University Discovery & Admission Engine styles
+   ========================================================================= */
+
+.uni-card-wrap { margin-bottom: 0; }
+.uni-flag {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0;
+  background: var(--teal-soft); color: var(--teal-dark);
+  font-size: 12px; font-weight: 700; letter-spacing: 0.5px;
+}
+
+/* IELTS category badges */
+.ielts-cats { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 8px; }
+.ielts-cat {
+  display: inline-flex; align-items: center; gap: 2px;
+  padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: 600;
+}
+.ielts-cat--green { background: var(--green-soft); color: var(--green); }
+.ielts-cat--red { background: var(--red-soft); color: var(--red); }
+.ielts-cat--grey { background: var(--line); color: var(--muted); }
+
+/* IELTS category table in drawer */
+.ielts-table {
+  width: 100%; border-collapse: collapse; font-size: 13px;
+}
+.ielts-table th {
+  text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line);
+  font-weight: 600; color: var(--muted);
+}
+.ielts-table td {
+  padding: 6px 8px; border-bottom: 1px solid var(--line);
+}
+.ielts-table tr.ielts-row--fail td { background: var(--red-soft); }
+
+/* Readiness ring in university drawer */
+.readiness-ring {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  flex-shrink: 0;
+}
+.ring-big {
+  width: 52px; height: 52px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 700;
+  border: 3px solid var(--c, var(--teal));
+  color: var(--c, var(--teal));
+}
+.ring-big span { font-size: 10px; font-weight: 500; }
+
+/* Pathway block in drawer */
+.pathway-block {
+  padding: 10px 0; border-bottom: 1px solid var(--line);
+}
+.pathway-block:last-child { border-bottom: none; }
+
+/* University card in list view */
+.uni-card-wrap .card { transition: box-shadow 0.15s; }
+.uni-card-wrap:hover .card { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+
+/* Badge color variants for admission categories */
+.badge--green { background: var(--green-soft); color: var(--green); }
+.badge--teal { background: var(--teal-soft); color: var(--teal-dark); }
+.badge--amber { background: var(--amber-soft); color: var(--amber); }
+.badge--red { background: var(--red-soft); color: var(--red); }
+.badge--grey { background: var(--line); color: var(--muted); }

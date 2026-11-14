@@ -15,6 +15,7 @@
   const NAV = [
     ["dashboard", "home", "Dashboard"],
     ["matches", "target", "My matches"],
+    ["universities", "graduation", "Universities"],
     ["report", "file", "My report"],
     ["plan", "route", "My plan"],
     ["indonesia", "globe", "Indonesia"],
@@ -56,7 +57,7 @@
   }
 
   function mobileNav(active) {
-    return `<nav class="mobile-nav">${[["dashboard", "home"], ["matches", "target"], ["report", "file"], ["plan", "route"], ["indonesia", "globe"]].map((n) => `<a class="mnav-item${active === n[0] ? " active" : ""}" href="#/${n[0]}">${icon(n[1])}<span>${t(NAV.find((x) => x[0] === n[0])[2])}</span></a>`).join("")}</nav>`;
+    return `<nav class="mobile-nav">${[["dashboard", "home"], ["matches", "target"], ["universities", "graduation"], ["report", "file"], ["plan", "route"]].map((n) => `<a class="mnav-item${active === n[0] ? " active" : ""}" href="#/${n[0]}">${icon(n[1])}<span>${t(NAV.find((x) => x[0] === n[0])[2])}</span></a>`).join("")}</nav>`;
   }
 
   /* ---------------------------------------------------------------- dashboard */
@@ -85,6 +86,39 @@
         ${U.statCard(t("Funding gap"), top ? U.money(top.cost.net) : "—", top ? t("per year for your top match") : t("Build a profile"), "wallet", "blue")}
         ${U.statCard(t("Plan progress"), plan ? done + "/" + plan.plan.length : "—", plan ? t("modules completed") : t("Choose a target"), "route")}
       </div>
+
+      ${/* Phase 2: University Admission Readiness preview */ ""}
+      ${(function () {
+        const ADM = global.SchoAdmission;
+        if (!ADM || !p) return "";
+        var uniMatches = state.uniMatches || [];
+        if (!uniMatches.length) {
+          uniMatches = ADM.matchUniversities(p);
+          state.uniMatches = uniMatches;
+        }
+        if (!uniMatches.length) return "";
+        var topUnis = uniMatches.slice(0, 3);
+        var strongCount = uniMatches.filter(function (m) { return m.category === "strong"; }).length;
+        var compCount = uniMatches.filter(function (m) { return m.category === "competitive"; }).length;
+        return '<div class="card card--pad mt-3">' +
+          '<div class="card-hd"><div class="h3">' + icon("graduation") + t("University admission readiness") + '</div>' +
+          '<a class="btn btn--sm btn--ghost" href="#/universities">' + t("View all") + icon("arrow", "i-sm") + "</a></div>" +
+          '<div class="row mt-1" style="gap:12px">' +
+            '<div class="mini-stat"><b>' + uniMatches.length + "</b><span>" + t("Universities") + "</span></div>" +
+            '<div class="mini-stat"><b>' + strongCount + "</b><span>" + t("Strong") + "</span></div>" +
+            '<div class="mini-stat"><b>' + compCount + "</b><span>" + t("Competitive") + "</span></div>" +
+          "</div>" +
+          '<div class="list mt-2">' + topUnis.map(function (m) {
+            var u = m.university;
+            var catClr = m.categoryColor || "grey";
+            return '<div class="list-item" data-action="open-university" data-id="' + u.id + '" style="cursor:pointer">' +
+              '<div class="li-icon">' + icon("graduation", "i-sm") + "</div>" +
+              "<div><div class=\"li-title\">" + esc(u.name) + "</div>" +
+              '<div class="li-sub">' + esc(u.city || "") + (u.city ? ", " : "") + esc(u.country || "") + " · " + t("Readiness") + " " + m.overall + "%</div></div>" +
+              '<div class="li-right">' + badge(m.categoryName, catClr) + "</div></div>";
+          }).join("") + "</div>" +
+        "</div>";
+      })()}
 
       <div class="split mt-3">
         <div class="stack">
@@ -363,6 +397,34 @@
       </div>
 
       <div class="card card--pad report-section">
+        <div class="report-sec-num">8b</div>
+        <div class="h3">${t("University Admission Readiness")}</div>
+        ${(function () {
+          var ADM = global.SchoAdmission;
+          if (!ADM) return '<p class="small muted">' + t("Admission engine not loaded.") + "</p>";
+          var um = state.uniMatches || [];
+          if (!um.length) { um = ADM.matchUniversities(p); state.uniMatches = um; }
+          if (!um.length) return '<p class="small muted">' + t("No university data available.") + "</p>";
+          var top5 = um.slice(0, 5);
+          var strong = um.filter(function (m) { return m.category === "strong"; }).length;
+          var comp = um.filter(function (m) { return m.category === "competitive"; }).length;
+          return '<div class="row mt-1" style="gap:12px">' +
+            '<div class="mini-stat"><b>' + um.length + "</b><span>" + t("Total universities") + "</span></div>" +
+            '<div class="mini-stat"><b>' + strong + "</b><span>" + t("Strong") + "</span></div>" +
+            '<div class="mini-stat"><b>' + comp + "</b><span>" + t("Competitive") + "</span></div>" +
+          "</div>" +
+          '<div class="list mt-2">' + top5.map(function (m) {
+            return '<div class="list-item" data-action="open-university" data-id="' + m.university.id + '" style="cursor:pointer">' +
+              '<div class="li-icon">' + icon("graduation", "i-sm") + "</div>" +
+              "<div><div class=\"li-title\">" + esc(m.university.name) + "</div>" +
+              '<div class="li-sub">' + esc(m.university.country || "") + " · " + t("Readiness") + " " + m.overall + "%</div></div>" +
+              '<div class="li-right">' + badge(m.categoryName, m.categoryColor) + "</div></div>";
+          }).join("") + "</div>" +
+          '<a class="btn btn--ghost btn--block mt-2" href="#/universities">' + t("See all universities") + icon("arrow", "i-sm") + "</a>";
+        })()}
+      </div>
+
+      <div class="card card--pad report-section">
         <div class="report-sec-num">9</div>
         <div class="h3">${t("Indonesia Domestic Options")}</div>
         ${o.id === "id" || p.origin === "id" ? `<p class="small muted">${t("As an Indonesian student, you also have domestic admission routes:")}</p>
@@ -535,6 +597,279 @@
     </div>`;
   }
 
+  /* --------------------------------------------------------- Universities discovery (Phase 2 — Admission Engine) */
+  function universities(state) {
+    const p = state.profile;
+    const ADM = global.SchoAdmission;
+    if (!ADM) return '<div class="page app-page">' + P.emptyState("alert", t("Admission engine not loaded"), t("Please refresh the page.")) + "</div>";
+
+    // Compute university matches using the admission engine
+    var uniMatches = state.uniMatches || [];
+    if (!uniMatches.length && p) {
+      uniMatches = ADM.matchUniversities(p);
+      state.uniMatches = uniMatches;
+    }
+
+    // Filter
+    var filterCat = state.uniFilter || "all";
+    var filterDest = state.uniDest || "all";
+    var filtered = uniMatches;
+    if (filterCat !== "all") filtered = filtered.filter(function (m) { return m.category === filterCat; });
+    if (filterDest !== "all") filtered = filtered.filter(function (m) {
+      var u = m.university;
+      return u.dest === filterDest || u.country === filterDest;
+    });
+
+    // Category counts
+    var counts = { strong: 0, competitive: 0, reach: 0, "not-eligible": 0 };
+    uniMatches.forEach(function (m) { counts[m.category] = (counts[m.category] || 0) + 1; });
+
+    // Destination options from data
+    var dests = (D.DESTINATIONS || []).map(function (d) { return { id: d.id, name: d.name, code: d.code }; });
+    // Add Indonesia if present
+    dests.push({ id: "id", name: "Indonesia", code: "ID" });
+
+    return '<div class="page app-page">' +
+      '<div class="page-head"><div><div class="eyebrow">' + t("University Admission Discovery") + '</div>' +
+      '<h1 class="h1">' + t("Find universities you can get into.") + '</h1>' +
+      '<p class="sub">' + t("See your admission readiness for 80+ universities worldwide and in Indonesia. We check your GPA, English scores (per IELTS category), tests, and documents — then tell you exactly what to fix.") + '</p></div>' +
+      '<div class="page-head-actions"><a class="btn btn--ghost" href="#/matches">' + icon("target", "i-sm") + t("Scholarship matches") + '</a></div></div>' +
+
+      // Stat cards
+      '<div class="grid grid-4">' +
+        U.statCard(t("Universities checked"), String(uniMatches.length), t("international + domestic"), "graduation") +
+        U.statCard(t("Strong matches"), String(counts.strong), t("highly likely to be admitted"), "checkCircle", "green") +
+        U.statCard(t("Competitive"), String(counts.competitive), t("solid chance with effort"), "target", "teal") +
+        U.statCard(t("Reach schools"), String(counts.reach), t("ambitious but possible"), "trending", "amber") +
+      "</div>" +
+
+      // Filters
+      '<div class="match-toolbar mt-2">' +
+        '<div class="chips-row">' +
+          [["all", t("All")], ["strong", t("Strong")], ["competitive", t("Competitive")], ["reach", t("Reach")], ["not-eligible", t("Not eligible")]].map(function (x) {
+            return '<button class="chip' + (filterCat === x[0] ? " active" : "") + '" data-action="uni-filter" data-value="' + x[0] + '">' + x[1] + (x[0] !== "all" ? " (" + (counts[x[0]] || 0) + ")" : "") + "</button>";
+          }).join("") +
+        "</div>" +
+        '<label class="tool-select">' + icon("globe", "i-sm") + '<select data-action="uni-dest">' +
+          '<option value="all"' + (filterDest === "all" ? " selected" : "") + ">" + t("All countries") + "</option>" +
+          dests.map(function (d) { return '<option value="' + d.id + '"' + (filterDest === d.id ? " selected" : "") + ">" + d.code + " " + esc(d.name) + "</option>"; }).join("") +
+        "</select></label>" +
+      "</div>" +
+
+      // University list
+      (filtered.length ?
+        '<div class="sch-grid sch-grid--list mt-2">' + filtered.map(function (m) {
+          var u = m.university;
+          var r = m.readiness;
+          var catColor = r.categoryColor || "grey";
+          var pathway = ADM.detectAdmissionPathway(u, p);
+          var primaryPathway = pathway && pathway.primary ? pathway.primary.name : t("Direct application");
+
+          // IELTS category summary
+          var ieltsSummary = "";
+          if (r.ieltsValidation && r.ieltsValidation.details) {
+            var catLabels = { listening: "L", reading: "R", writing: "W", speaking: "S", overall: "Overall" };
+            var parts = [];
+            Object.keys(r.ieltsValidation.details).forEach(function (cat) {
+              var d = r.ieltsValidation.details[cat];
+              var mark = d.status === "met" ? "&#10003;" : d.status === "not-met" ? "&#10007;" : "?";
+              var cls = d.status === "met" ? "green" : d.status === "not-met" ? "red" : "grey";
+              parts.push('<span class="ielts-cat ielts-cat--' + cls + '">' + catLabels[cat] + ": " + d.required + " (" + mark + ")</span>");
+            });
+            if (parts.length) ieltsSummary = '<div class="ielts-cats">' + parts.join(" ") + "</div>";
+          }
+
+          return '<div class="uni-card-wrap" data-action="open-university" data-id="' + u.id + '" style="cursor:pointer">' +
+            '<div class="card card--pad">' +
+              '<div class="card-hd">' +
+                '<div class="row" style="gap:8px;align-items:flex-start">' +
+                  '<div class="uni-flag">' + esc((u.dest || u.country || "??").toUpperCase().substring(0, 2)) + "</div>" +
+                  '<div style="flex:1">' +
+                    '<div class="h3" style="margin:0">' + esc(u.name) + "</div>" +
+                    '<div class="tiny">' + esc(u.city || "") + (u.city ? ", " : "") + esc(u.country || "") + "</div>" +
+                  "</div>" +
+                  '<span class="badge badge--' + catColor + '">' + r.categoryName + "</span>" +
+                "</div>" +
+              "</div>" +
+              '<div class="row mt-2" style="gap:12px">' +
+                '<div class="mini-stat"><b>' + r.overall + "%</b><span>" + t("Readiness") + "</span></div>" +
+                '<div class="mini-stat"><b>' + r.fulfilled + "</b><span>" + t("Met") + "</span></div>" +
+                '<div class="mini-stat"><b>' + r.missing + "</b><span>" + t("Missing") + "</span></div>" +
+                '<div class="mini-stat"><b>' + r.weaknesses + "</b><span>" + t("Close") + "</span></div>" +
+              "</div>" +
+              ieltsSummary +
+              '<div class="row mt-2" style="gap:6px;flex-wrap:wrap">' +
+                '<span class="chip" style="cursor:default">' + icon("route", "i-sm") + esc(primaryPathway) + "</span>" +
+                (u.minGpa ? '<span class="chip" style="cursor:default">GPA ' + u.minGpa + "+</span>" : "") +
+                (u.ielts ? '<span class="chip" style="cursor:default">IELTS ' + u.ielts + "+</span>" : "") +
+                (u.admission && u.admission.appFee ? '<span class="chip" style="cursor:default">' + t("Fee") + " $" + u.admission.appFee + "</span>" : "") +
+              "</div>" +
+              (r.recommendations.length ?
+                '<div class="insight warn mt-2">' + icon("alert", "i-sm") +
+                '<span>' + esc(r.recommendations[0].action) + "</span></div>" : "") +
+            "</div>" +
+          "</div>";
+        }).join("") + "</div>"
+      :
+        P.emptyState("search", t("No universities in this filter"), t("Try another category or country filter."),
+          '<button class="btn btn--ghost" data-action="uni-filter" data-value="all">' + t("Show all") + "</button>")
+      ) +
+    "</div>";
+  }
+
+  /* --------------------------------------------------------- University detail drawer (Phase 2) */
+  function drawerUniversity(state) {
+    const p = state.profile;
+    const ADM = global.SchoAdmission;
+    if (!ADM) return "";
+
+    // Find university in all sources
+    var uni = null;
+    var allUnis = [];
+    if (global.SCHO_UNIS && global.SCHO_UNIS.UNIVERSITIES_EXPANDED) allUnis = allUnis.concat(global.SCHO_UNIS.UNIVERSITIES_EXPANDED);
+    if (D.UNIVERSITIES) allUnis = allUnis.concat(D.UNIVERSITIES);
+    var D_ID = global.SCHO_ID || { UNIVERSITIES_ID: [] };
+    if (D_ID.UNIVERSITIES_ID) allUnis = allUnis.concat(D_ID.UNIVERSITIES_ID);
+    uni = allUnis.find(function (u) { return u.id === state.drawer.id; });
+    if (!uni) return "";
+
+    var readiness = ADM.assessReadiness(p, uni);
+    var pathway = ADM.detectAdmissionPathway(uni, p);
+    var ieltsVal = readiness.ieltsValidation;
+    var destInfo = E.destination(uni.dest);
+
+    // Scholarship matches
+    var schIds = uni.scholarships || uni.scholarshipIds || [];
+    var schMatches = schIds.map(function (sid) {
+      return (D.SCHOLARSHIPS || []).find(function (s) { return s.id === sid; }) ||
+             (D_ID.SCHOLARSHIPS_ID || []).find(function (s) { return s.id === sid; });
+    }).filter(Boolean);
+
+    // IELTS category detail table
+    var ieltsTable = "";
+    if (ieltsVal && ieltsVal.details) {
+      var catLabels = { listening: "Listening", reading: "Reading", writing: "Writing", speaking: "Speaking", overall: "Overall" };
+      ieltsTable = '<div class="card card--pad"><div class="card-hd"><div class="h3">' + icon("language") + t("IELTS Category Validation") + "</div>" +
+        (ieltsVal.passed ? badge(t("All met"), "green") : badge(t("Gaps found"), "red")) + "</div>" +
+        '<table class="ielts-table"><thead><tr><th>' + t("Category") + "</th><th>" + t("Required") + "</th><th>" + t("Your score") + "</th><th>" + t("Status") + "</th></tr></thead><tbody>" +
+        Object.keys(ieltsVal.details).map(function (cat) {
+          var d = ieltsVal.details[cat];
+          var mark = d.status === "met" ? "&#10003; " + t("Met") : d.status === "not-met" ? "&#10007; " + t("Not met") : d.status === "missing" ? "? " + t("Not provided") : "? " + t("N/A");
+          var rowClass = d.status === "met" ? "" : d.status === "not-met" ? " class=\"ielts-row--fail\"" : "";
+          return "<tr" + rowClass + "><td>" + catLabels[cat] + "</td><td>" + d.required + "</td><td>" + (d.achieved !== null && d.achieved !== undefined ? d.achieved : "—") + "</td><td>" + mark + "</td></tr>";
+        }).join("") +
+        "</tbody></table>" +
+        (ieltsVal.gaps.length ?
+          '<div class="insight warn mt-2">' + icon("alert", "i-sm") +
+          '<span>' + t("Improve these categories") + ": " + ieltsVal.gaps.map(function (g) { return catLabels[g.category] + " (+" + g.gap + ")"; }).join(", ") + "</span></div>" : "") +
+        "</div>";
+    }
+
+    // Admission pathway details
+    var pathwayHtml = "";
+    if (pathway && pathway.pathways && pathway.pathways.length) {
+      pathwayHtml = '<div class="card card--pad"><div class="card-hd"><div class="h3">' + icon("route") + t("Admission Pathway") + "</div></div>" +
+        pathway.pathways.map(function (pw) {
+          return '<div class="pathway-block">' +
+            '<div class="row" style="gap:6px"><b>' + esc(pw.name) + "</b>" + (pw.applicable ? badge(t("Applicable"), "green") : badge(t("Check eligibility"), "amber")) + "</div>" +
+            '<dl class="kv mt-1">' +
+            (pw.official ? "<dt>" + t("Official portal") + '</dt><dd><a href="' + esc(pw.official) + '" target="_blank" rel="noopener">' + esc(pw.official) + " " + icon("external", "i-sm") + "</a></dd>" : "") +
+            "<dt>" + t("Timeline") + "</dt><dd>" + esc(pw.period) + "</dd>" +
+            "<dt>" + t("Exam") + "</dt><dd>" + esc(pw.exam) + "</dd>" +
+            "<dt>" + t("Requirements") + "</dt><dd>" + pw.requirements.map(function (r) { return esc(r); }).join(", ") + "</dd>" +
+            "<dt>" + t("Documents") + "</dt><dd>" + pw.documents.map(function (d) { return esc(d); }).join(", ") + "</dd>" +
+            "</dl>" +
+            (pw.notes && pw.notes.length ? '<ul class="rm-acts mt-1">' + pw.notes.map(function (n) { return "<li>" + esc(n) + "</li>"; }).join("") + "</ul>" : "") +
+          "</div>";
+        }).join("") +
+        "</div>";
+    }
+
+    // Recommendations
+    var recsHtml = readiness.recommendations.length ?
+      '<div class="card card--pad"><div class="card-hd"><div class="h3">' + icon("sparkle") + t("Action Plan") + "</div>" +
+      badge(readiness.recommendations.length + " " + t("steps"), "amber") + "</div>" +
+      '<div class="check-list">' + readiness.recommendations.map(function (r) {
+        var priorityBadge = r.priority === "critical" ? badge(t("Critical"), "red") : r.priority === "high" ? badge(t("High"), "amber") : badge(t(r.priority.charAt(0).toUpperCase() + r.priority.slice(1)), "grey");
+        return '<div class="check-item warn"><div class="ci-icon">' + icon("alert", "i-sm") + "</div>" +
+          '<div><div class="ci-title">' + esc(r.action) + " " + priorityBadge + "</div>" +
+          '<div class="ci-desc">' + esc(r.detail) + "</div></div></div>";
+      }).join("") + "</div></div>" : "";
+
+    // Related scholarships
+    var schHtml = schMatches.length ?
+      '<div class="card card--pad"><div class="card-hd"><div class="h3">' + icon("target") + t("Scholarships for this university") + "</div></div>' +
+      '<div class="list">' + schMatches.map(function (s) {
+        return '<div class="list-item" data-action="open-scholarship" data-id="' + s.id + '" style="cursor:pointer">' +
+          '<div class="li-icon">' + icon("target", "i-sm") + "</div>" +
+          '<div><div class="li-title">' + esc(s.name) + "</div>" +
+          '<div class="li-sub">' + esc(s.provider) + " · " + (s.funding === "full" ? t("Fully funded") : t("Partial")) + "</div></div>" +
+          '<div class="li-right">' + badge("Tier " + (s.sourceTier || 2), "grey") + "</div></div>";
+      }).join("") + "</div></div>" : "";
+
+    // University facts
+    var factsHtml = '<div class="card card--pad"><div class="card-hd"><div class="h3">' + icon("shield") + t("University facts") + "</div></div>" +
+      '<dl class="kv">' +
+      "<dt>" + t("Country") + "</dt><dd>" + destInfo.code + " " + esc(destInfo.name) + "</dd>" +
+      "<dt>" + t("City") + "</dt><dd>" + esc(uni.city || "—") + "</dd>" +
+      "<dt>" + t("Type") + "</dt><dd>" + (uni.type === "PTN" || uni.type === "national-public" ? t("Public (PTN)") : uni.type === "PTS" || uni.type === "national-private" ? t("Private (PTS)") : uni.type === "international" ? t("International") : esc(uni.type || "—")) + "</dd>" +
+      "<dt>" + t("Levels") + "</dt><dd>" + (uni.level ? uni.level.join(" · ") : t("All levels")) + "</dd>" +
+      (uni.minGpa ? "<dt>" + t("Min GPA") + "</dt><dd>" + uni.minGpa + " / 4.0</dd>" : "") +
+      (uni.ielts ? "<dt>" + t("IELTS overall") + "</dt><dd>" + uni.ielts + "+</dd>" : "") +
+      (uni.toefl ? "<dt>" + t("TOEFL") + "</dt><dd>" + uni.toefl + "+</dd>" : "") +
+      (uni.tuition ? "<dt>" + t("Tuition") + "</dt><dd>" + U.money(uni.tuition[p ? p.level : "Master"] || uni.tuition.Master || 0) + "/" + t("year") + "</dd>" : "") +
+      (uni.livingMonthly ? "<dt>" + t("Living") + "</dt><dd>" + U.money(uni.livingMonthly) + "/" + t("month") + "</dd>" : "") +
+      (uni.aid ? "<dt>" + t("Financial aid") + "</dt><dd>" + esc(uni.aid) + "</dd>" : "") +
+      "</dl>" +
+      '<a class="btn btn--ghost btn--block mt-2" href="' + esc(uni.url || "#") + '" target="_blank" rel="noopener">' + t("Official website") + icon("external", "i-sm") + "</a>" +
+      "</div>";
+
+    return '<div class="drawer-head">' +
+      '<div class="drawer-title">' +
+        '<div class="row" style="gap:6px">' + badge(destInfo.code + " " + destInfo.name, "grey") + badge(readiness.categoryName, readiness.categoryColor) + "</div>" +
+        '<h2>' + esc(uni.name) + "</h2>" +
+        '<div class="tiny">' + esc(uni.city || "") + (uni.city ? ", " : "") + esc(uni.country || "") + "</div>" +
+      "</div>" +
+      '<div class="readiness-ring"><div class="ring-big" style="--c:var(--' + readiness.categoryColor + ',var(--teal))">' + readiness.overall + '<span>%</span></div><span class="tiny">' + t("Readiness") + "</span></div>" +
+      '<button class="icon-btn" data-action="close-drawer" aria-label="' + t("Close") + '">' + icon("x") + "</button>" +
+    "</div>" +
+    '<div class="drawer-body">' +
+      '<div class="drawer-cost"><div><span>' + t("Admission readiness") + '</span><b>' + readiness.overall + '%</b><em>' + readiness.categoryName + "</em></div>" +
+      '<div><span>' + t("Requirements met") + '</span><b>' + readiness.fulfilled + " / " + (readiness.fulfilled + readiness.missing + readiness.weaknesses) + "</b><em>" + readiness.missing + " " + t("missing") + "</em></div></div>" +
+
+      // Fulfilled + Missing summary
+      (readiness.fulfilled.length ?
+        '<div class="card card--pad"><div class="card-hd"><div class="h3">' + icon("checkCircle") + t("Requirements met") + "</div>" + badge(String(readiness.fulfilled.length), "green") + "</div>" +
+        '<div class="check-list">' + readiness.fulfilled.map(function (f) {
+          return '<div class="check-item"><div class="ci-icon">' + icon("check", "i-sm") + "</div><div><div class="ci-title">' + esc(f.requirement) + "</div><div class=\"ci-desc\">" + esc(f.detail) + "</div></div></div>";
+        }).join("") + "</div></div>" : "") +
+
+      (readiness.weaknesses.length ?
+        '<div class="card card--pad"><div class="card-hd"><div class="h3">' + icon("alert") + t("Close — needs work") + "</div>" + badge(String(readiness.weaknesses.length), "amber") + "</div>" +
+        '<div class="check-list">' + readiness.weaknesses.map(function (w) {
+          return '<div class="check-item warn"><div class="ci-icon">' + icon("alert", "i-sm") + "</div><div><div class="ci-title">' + esc(w.requirement) + "</div><div class="ci-desc">' + esc(w.detail) + "</div></div></div>";
+        }).join("") + "</div></div>" : "") +
+
+      (readiness.missing.length ?
+        '<div class="card card--pad"><div class="card-hd"><div class="h3">' + icon("x") + t("Missing requirements") + "</div>" + badge(String(readiness.missing.length), "red") + "</div>" +
+        '<div class="check-list">' + readiness.missing.map(function (m) {
+          return '<div class="check-item warn"><div class="ci-icon">' + icon("x", "i-sm") + "</div><div><div class="ci-title">' + esc(m.requirement) + "</div><div class="ci-desc">' + esc(m.detail) + "</div></div></div>";
+        }).join("") + "</div></div>" : "") +
+
+      ieltsTable +
+      pathwayHtml +
+      recsHtml +
+      factsHtml +
+      schHtml +
+
+      '<div class="drawer-actions">' +
+        '<a class="btn btn--primary" href="' + esc(uni.admission ? uni.admission.appLink || uni.url : uni.url || "#") + '" target="_blank" rel="noopener">' + icon("external", "i-sm") + t("Apply now") + "</a>" +
+        '<a class="btn btn--ghost" href="' + esc(uni.url || "#") + '" target="_blank" rel="noopener">' + t("Website") + "</a>" +
+        '<button class="btn btn--soft" data-action="close-drawer">' + t("Close") + "</button>" +
+      "</div>" +
+    "</div>";
+  }
+
   /* ----------------------------------------------------------------- settings */
   function settings(state) {
     const p = state.profile;
@@ -687,5 +1022,5 @@
     </div>`;
   }
 
-  global.AppPages = { appShell, dashboard, matches, report, indonesia, plan, settings, drawerScholarship, drawerDestination };
+  global.AppPages = { appShell, dashboard, matches, universities, report, indonesia, plan, settings, drawerScholarship, drawerDestination, drawerUniversity };
 })(window);
