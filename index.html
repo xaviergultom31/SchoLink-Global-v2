@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SchoLink — Scholarships without borders</title>
+  <meta name="description" content="Find international scholarships you can actually win, estimate the real cost after funding, and build a week-by-week plan. Free, private, and available in 27 languages.">
+  <meta name="theme-color" content="#08251c">
+  <meta name="color-scheme" content="light">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/favicon.svg">
+  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="assets/css/theme.css">
+</head>
+<body>
+  <div id="app" role="main">
+    <div style="min-height:70vh;display:grid;place-items:center;color:#64766c;font:14px 'Segoe UI',system-ui,sans-serif">
+      Loading SchoLink…
+    </div>
+  </div>
+
+  <div class="backdrop" id="backdrop"></div>
+  <aside class="drawer" id="drawer" aria-hidden="true" aria-label="Details"></aside>
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Dialog"></div>
+  <div class="toast-stack" aria-live="polite"></div>
+
+  <noscript>
+    <div style="padding:24px;font-family:'Segoe UI',system-ui,sans-serif">
+      <h1>SchoLink needs JavaScript</h1>
+      <p>Enable JavaScript to use the profile, matching and cost calculator.</p>
+    </div>
+  </noscript>
+
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/data-id.js"></script>
+  <script src="assets/js/engine.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/pages.js"></script>
+  <script src="assets/js/app-pages.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
