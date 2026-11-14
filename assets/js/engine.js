@@ -9,6 +9,19 @@
 
   const D = global.SCHO;
   const D_ID = global.SCHO_ID || { UNIVERSITIES_ID: [], SCHOLARSHIPS_ID: [], ROUTES: [], PREP_MODULES: [], LIVING_ID: {}, CALENDAR_ID: [] };
+
+  /* Merge expanded scholarships (loaded after data.js, before engine.js) */
+  if (global.SCHO_EXPANDED && global.SCHO_EXPANDED.EXPANDED_SCHOLARSHIPS) {
+    var existingIds = {};
+    D.SCHOLARSHIPS.forEach(function (s) { existingIds[s.id] = true; });
+    global.SCHO_EXPANDED.EXPANDED_SCHOLARSHIPS.forEach(function (s) {
+      if (!existingIds[s.id]) {
+        D.SCHOLARSHIPS.push(s);
+      }
+    });
+    D.META.stats.scholarships = D.SCHOLARSHIPS.length;
+  }
+
   const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
   const round = (v, d) => Math.round(v * Math.pow(10, d || 0)) / Math.pow(10, d || 0);
 
