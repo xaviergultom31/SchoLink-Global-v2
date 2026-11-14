@@ -787,6 +787,14 @@
     }
   });
 
+  /* Merge expanded scholarships from data-expanded.js */
+  if (global.SCHO_EXPANDED && global.SCHO_EXPANDED.EXPANDED_SCHOLARSHIPS) {
+    SCHOLARSHIPS.push.apply(SCHOLARSHIPS, global.SCHO_EXPANDED.EXPANDED_SCHOLARSHIPS);
+  }
+
+  /* Update stats to reflect expanded database */
+  META.stats.scholarships = SCHOLARSHIPS.length;
+
   window.SCHO = {
     META, FIELDS, LEVELS, ORIGINS, REGION_TYPES, CONNECTIVITY, INCOME_BANDS, PRIORITIES,
     DESTINATIONS, UNIVERSITIES, SCHOLARSHIPS, DIAGNOSTIC, ARCHETYPES, MODULES,
