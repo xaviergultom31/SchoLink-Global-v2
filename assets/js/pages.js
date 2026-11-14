@@ -105,18 +105,35 @@
 
   function costRows(cost) {
     return [
-      [t("Tuition"), cost.tuition],
-      [t("Living costs"), cost.living],
+      [t("Tuition (annual)"), cost.tuition],
+      [t("Living costs (12 months)"), cost.living],
       [t("Health insurance"), cost.insurance],
-      [t("Visa fee"), cost.visa],
-      [t("Flights"), cost.flights],
+      [t("Books & supplies"), cost.booksSupplies || 0],
+      [t("Visa & residence permit"), (cost.visa || 0) + (cost.residencePermit || 0)],
+      [t("Flights (return)"), cost.flights],
       [t("Application fees"), cost.application],
+      [t("One-time setup (deposit, SIM, etc.)"), cost.oneTimeSetup || 0],
     ];
   }
 
   function costBreakdown(cost) {
-    const rows = costRows(cost).map((r) => `<div class="cost-line"><span>${r[0]}</span><b>${U.money(r[1])}</b></div>`).join("");
-    return `<div class="cost-lines">${rows}<div class="cost-line cost-line--total"><span>${t("Estimated first-year cost")}</span><b>${U.money(cost.total)}</b></div></div>`;
+    const rows = costRows(cost).map((r) => r[1] > 0 ? `<div class="cost-line"><span>${r[0]}</span><b>${U.money(r[1])}</b></div>` : "").join("");
+    const oneTimeTotal = (cost.visa || 0) + (cost.residencePermit || 0) + (cost.flights || 0) + (cost.application || 0) + (cost.oneTimeSetup || 0);
+    return `<div class="cost-lines">
+      <div class="cost-line cost-line--section"><span>${t("Recurring (annual)")}</span></div>
+      ${rows.split('<div class="cost-line"><span>' + t("Visa"))[0]}
+      <div class="cost-line"><span>${t("Books & supplies")}</span><b>${U.money(cost.booksSupplies || 0)}</b></div>
+      <div class="cost-line cost-line--subtotal"><span>${t("Annual subtotal")}</span><b>${U.money(cost.recurringAnnual || (cost.tuition + cost.living + cost.insurance + (cost.booksSupplies || 0)))}</b></div>
+      <div class="cost-line cost-line--section"><span>${t("One-time costs")}</span></div>
+      <div class="cost-line"><span>${t("Visa fee")}</span><b>${U.money(cost.visa || 0)}</b></div>
+      <div class="cost-line"><span>${t("Residence permit")}</span><b>${U.money(cost.residencePermit || 0)}</b></div>
+      <div class="cost-line"><span>${t("Flights (return)")}</span><b>${U.money(cost.flights || 0)}</b></div>
+      <div class="cost-line"><span>${t("Application fees")}</span><b>${U.money(cost.application || 0)}</b></div>
+      <div class="cost-line"><span>${t("Setup (deposit, SIM, etc.)")}</span><b>${U.money(cost.oneTimeSetup || 0)}</b></div>
+      <div class="cost-line cost-line--subtotal"><span>${t("One-time subtotal")}</span><b>${U.money(oneTimeTotal)}</b></div>
+      <div class="cost-line cost-line--total"><span>${t("Estimated first-year cost")}</span><b>${U.money(cost.total)}</b></div>
+      ${cost.totalProgram ? `<div class="cost-line cost-line--program"><span>${t("Total programme (" + cost.duration + " years)")}</span><b>${U.money(cost.totalProgram)}</b></div>` : ""}
+    </div>`;
   }
 
   function schCard(row, opts) {
@@ -329,7 +346,19 @@
       </section>
 
       <section class="section">
-        <div class="section-head"><div><div class="eyebrow">${t("How it works")}</div><h2>${t("From “I can't afford it” to a funded application.")}</h2></div></div>
+        <div class="section-head"><div><div class="eyebrow">${t("New tools")}</div><h2>${t("Not just scholarships — everything you need to get in.")}</h2></div></div>
+        <div class="grid grid-3">
+          <div class="card card--pad"><div class="h3">${icon("graduation")}${t("University Discovery")}</div><p class="small muted mt-1">${t("Check your admission readiness for 80+ universities worldwide. IELTS per-category validation, pathway detection, and action plans.")}</p><a class="btn btn--sm btn--ghost mt-2" href="#/universities">${t("Explore universities")}</a></div>
+          <div class="card card--pad"><div class="h3">${icon("book")}${t("Preparation Center")}</div><p class="small muted mt-1">${t("IELTS prep modules, SAT/GRE/UTBK guides, personal statement masterclass, study plans, and interview practice.")}</p><a class="btn btn--sm btn--ghost mt-2" href="#/prep">${t("Start preparing")}</a></div>
+          <div class="card card--pad"><div class="h3">${icon("briefcase")}${t("Application Tracker")}</div><p class="small muted mt-1">${t("Track every application from research to acceptance. Set deadlines, update stages, and see your progress.")}</p><a class="btn btn--sm btn--ghost mt-2" href="#/tracker">${t("Track applications")}</a></div>
+          <div class="card card--pad"><div class="h3">${icon("sparkle")}${t("AI Consultation")}</div><p class="small muted mt-1">${t("Get instant guidance on applications, funding, tests, visas, and Indonesian admissions.")}</p><a class="btn btn--sm btn--ghost mt-2" href="#/consult">${t("Ask a question")}</a></div>
+          <div class="card card--pad"><div class="h3">${icon("wallet")}${t("Enhanced Cost Calculator")}</div><p class="small muted mt-1">${t("See every cost component: tuition, living, books, visa, residence permit, setup, and 36-month savings plans.")}</p><a class="btn btn--sm btn--ghost mt-2" href="#/costs">${t("Calculate costs")}</a></div>
+          <div class="card card--pad"><div class="h3">${icon("globe")}${t("Indonesian Admissions")}</div><p class="small muted mt-1">${t("SNBP, SNBT, UTBK preparation, domestic scholarships, and PTN/PTS admission routes.")}</p><a class="btn btn--sm btn--ghost mt-2" href="#/indonesia">${t("Indonesia routes")}</a></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><div><div class="eyebrow">${t("How it works")}</div><h2>${t("From profile to funded application.")}</h2></div></div>
         <div class="steps-grid">
           <div class="step-card"><span class="step-num">01</span><h3>${t("Build your profile")}</h3><p>${t("Four short steps. No account, no fee, and nothing leaves your device.")}</p></div>
           <div class="step-card"><span class="step-num">02</span><h3>${t("See your matches")}</h3><p>${t("Ranked by eligibility, funding and the cost you would actually pay.")}</p></div>
@@ -448,13 +477,16 @@
           </div>
           <div class="calc-output">
             <div class="calc-total"><span>${t("Estimated net cost")}</span><b>${U.money(net)}</b><em>${t("per year")} · ${yearsLabel(cost.duration)}</em></div>
-            <div class="calc-sub"><span>${t("Total programme")}</span><b>${U.money(net * cost.duration)}</b></div>
+            <div class="calc-sub"><span>${t("Total programme (" + cost.duration + " years)")}</span><b>${U.money(net * cost.duration)}</b></div>
             ${funding ? `<div class="funding-box">${icon("sparkle", "i-sm")}<div><b>${esc(s.name)}</b><span>${t("Covers")} ${U.money(funding.funding)} ${t("of the first year")}</span></div></div>` : ""}
             <div class="card card--pad">${costBreakdown(cost, funding)}
               ${funding ? `<div class="cost-summary"><span>${t("Funding")}</span><b>− ${U.money(funding.funding)}</b></div><div class="cost-summary cost-summary--net"><span>${t("Net cost")}</span><b>${U.money(funding.net)}</b></div>` : ""}
             </div>
-            ${net > 0 ? `<div class="savings-card"><div>${t("To cover {amount} in 12 months", { amount: U.money(net) })}<b>${U.money(Math.ceil(net / 12))} / ${t("month")}</b></div>
-              <div>${t("In 24 months")}<b>${U.money(Math.ceil(net / 24))} / ${t("month")}</b></div></div>` : `<div class="insight">${icon("checkCircle", "i-sm")}<span>${t("This award covers the core costs. You still need spending money and a buffer for arrival.")}</span></div>`}
+            ${net > 0 ? `<div class="savings-card">
+              <div>${t("To cover {amount} in 12 months", { amount: U.money(net) })}<b>${U.money(Math.ceil(net / 12))} / ${t("month")}</b></div>
+              <div>${t("In 24 months")}<b>${U.money(Math.ceil(net / 24))} / ${t("month")}</b></div>
+              <div>${t("In 36 months")}<b>${U.money(Math.ceil(net / 36))} / ${t("month")}</b></div>
+            </div>` : `<div class="insight">${icon("checkCircle", "i-sm")}<span>${t("This award covers the core costs. You still need spending money and a buffer for arrival.")}</span></div>`}
             <div class="tiny">${t("Prices in {currency}, converted at indicative rates. Confirm tuition with each university.", { currency: I.state.currency })}</div>
           </div>
         </div>

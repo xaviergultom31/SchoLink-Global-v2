@@ -767,3 +767,84 @@ body.hemat .topbar { backdrop-filter: none; background: #f4f7fb; }
 .badge--amber { background: var(--amber-soft); color: var(--amber); }
 .badge--red { background: var(--red-soft); color: var(--red); }
 .badge--grey { background: var(--line); color: var(--muted); }
+
+/* =========================================================================
+   Phase 3-6: Preparation Center, Tracker, AI Consult, Cost breakdown
+   ========================================================================= */
+
+/* Prep module cards */
+.prep-module {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.prep-module:hover {
+  border-color: var(--teal);
+  box-shadow: 0 2px 8px rgba(15, 157, 138, 0.08);
+}
+
+/* Card clickable */
+.card--clickable {
+  transition: transform 0.15s, box-shadow 0.15s;
+  cursor: pointer;
+}
+.card--clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+/* AI consultation */
+.ai-q-block {
+  margin-bottom: 12px;
+}
+.ai-q-block:last-child { margin-bottom: 0; }
+
+/* Application tracker */
+.app-stage-select {
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 12px;
+  background: var(--card);
+}
+
+/* Cost breakdown enhancements */
+.cost-line--section {
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+  margin-top: 4px;
+}
+.cost-line--subtotal {
+  font-weight: 600;
+  color: var(--ink-2);
+  border-top: 1px solid var(--line);
+  padding-top: 6px;
+  margin-top: 4px;
+}
+.cost-line--program {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--teal-dark);
+  background: var(--teal-soft);
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+/* Savings card 3-column */
+.savings-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 600px) {
+  .savings-card {
+    grid-template-columns: 1fr;
+  }
+}

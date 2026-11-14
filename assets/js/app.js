@@ -13,7 +13,7 @@
   const t = (s, v) => I.t(s, v);
 
   const KEY = "scholink.global.v1";
-  const APP_ROUTES = ["dashboard", "matches", "universities", "report", "indonesia", "plan", "settings"];
+  const APP_ROUTES = ["dashboard", "matches", "universities", "tracker", "prep", "consult", "report", "indonesia", "plan", "settings"];
   const SITE_ROUTES = ["home", "destinations", "scholarships", "costs", "impact"];
 
   const DEFAULT_DRAFT = {
@@ -57,6 +57,8 @@
     uniFilter: "all",
     uniDest: "all",
     uniMatches: [],
+    applications: [],
+    aiCategory: "strategy",
     drawer: null,
     saver: false,
   };
@@ -67,6 +69,7 @@
       localStorage.setItem(KEY, JSON.stringify({
         profile: state.profile, saved: state.saved, progress: state.progress,
         planTarget: state.planTarget, saver: state.saver,
+        applications: state.applications || [],
         lang: I.state.lang, currency: I.state.currency,
       }));
     } catch (e) { /* ignore */ }
@@ -82,6 +85,7 @@
       state.progress = d.progress || {};
       state.planTarget = d.planTarget || null;
       state.saver = !!d.saver;
+      state.applications = d.applications || [];
       if (d.lang) I.state.lang = d.lang;
       if (d.currency) I.state.currency = d.currency;
       document.body.classList.toggle("saver", state.saver);
@@ -121,7 +125,13 @@
     I.applyDocument();
 
     const route = state.route;
-    if (APP_ROUTES.indexOf(route) >= 0) {
+    // Handle prep sub-routes
+    var effectiveRoute = route;
+    if (route.indexOf("prep-") === 0) effectiveRoute = "prep";
+    // Handle tracker sub-routes
+    if (route === "tracker" || route === "applications") effectiveRoute = "tracker";
+
+    if (APP_ROUTES.indexOf(effectiveRoute) >= 0) {
       if (!state.profile) {
         state.route = "start";
         state.step = 1;
@@ -129,8 +139,8 @@
         app.innerHTML = P.start(state);
         return;
       }
-      const page = A[route](state);
-      app.innerHTML = A.appShell(state, route, page);
+      var page = A[effectiveRoute](state);
+      app.innerHTML = A.appShell(state, effectiveRoute, page);
     } else if (route === "start") {
       app.innerHTML = P.start(state);
     } else {
@@ -291,6 +301,10 @@
         id: r.scholarship.id, name: r.scholarship.name, score: r.score,
         netCost: r.cost.net, deadline: r.scholarship.deadline,
       })),
+      universityMatches: (state.uniMatches || []).slice(0, 10).map(function (m) {
+        return { id: m.university.id, name: m.university.name, readiness: m.overall, category: m.category };
+      }),
+      applications: state.applications || [],
       saved: state.saved,
       plan: plan ? { scholarship: plan.scholarship.name, readiness: plan.readiness, modules: plan.plan.map((m) => ({ week: m.week, title: m.title, done: !!(state.progress[plan.scholarship.id] || {})[m.moduleId] })) } : null,
     };
@@ -313,7 +327,8 @@
   function clearAll() {
     try { localStorage.removeItem(KEY); } catch (e) {}
     state.profile = null; state.matches = []; state.saved = []; state.progress = {};
-    state.planTarget = null; state.draft = Object.assign({}, DEFAULT_DRAFT); state.step = 1;
+    state.planTarget = null; state.uniMatches = []; state.applications = [];
+    state.draft = Object.assign({}, DEFAULT_DRAFT); state.step = 1;
     closeModal(); closeDrawer(true);
     go("home");
     U.toast(t("All local data has been deleted."));
@@ -395,6 +410,11 @@
       case "match-filter": state.matchFilter = el.getAttribute("data-value"); render(); break;
       case "uni-filter": state.uniFilter = el.getAttribute("data-value"); render(); break;
       case "uni-dest": state.uniDest = el.getAttribute("data-value"); render(); break;
+      case "ai-category": state.aiCategory = el.getAttribute("data-value"); render(); break;
+      case "add-application": modalAddApplication(state); break;
+      case "save-application": saveApplication(el); break;
+      case "app-stage": updateAppStage(el.getAttribute("data-id"), el.getAttribute("data-value")); break;
+      case "remove-application": removeApplication(el.getAttribute("data-id")); break;
       case "export": exportPlan(); break;
       case "clear": confirmClear(); break;
       case "clear-confirm": clearAll(); break;
@@ -497,6 +517,91 @@
     }
     state.draft[field] = value;
     if (field === "englishType" || field === "curriculum") render();
+  }
+
+  /* --------------------------------------------------- application tracker */
+  function modalAddApplication(state) {
+    var PREP = global.SCHO_PREP;
+    var stages = PREP ? PREP.APP_STAGES : [];
+    var schOptions = (D.SCHOLARSHIPS || []).slice(0, 20).map(function (s) {
+      return '<option value="sch:' + s.id + '">' + esc(s.name) + " (" + esc(s.provider) + ")</option>";
+    }).join("");
+    var uniOptions = "";
+    if (global.SCHO_UNIS && global.SCHO_UNIS.UNIVERSITIES_EXPANDED) {
+      uniOptions = global.SCHO_UNIS.UNIVERSITIES_EXPANDED.slice(0, 20).map(function (u) {
+        return '<option value="uni:' + u.id + '">' + esc(u.name) + "</option>";
+      }).join("");
+    }
+    modal('<div class="modal-head"><h3>' + t("Add Application") + '</h3><button class="icon-btn" data-action="close-modal">' + U.icon("x", "i-sm") + '</button></div>' +
+      '<div class="modal-body">' +
+        '<div class="field"><label>' + t("Application name") + '</label><input type="text" data-bind="appName" placeholder="' + t("e.g., Harvard Master CS") + '" class="input"></div>' +
+        '<div class="field"><label>' + t("Type") + '</label><select data-bind="appType" class="select">' +
+          '<option value="university">' + t("University") + '</option>' +
+          '<option value="scholarship">' + t("Scholarship") + '</option>' +
+        '</select></div>' +
+        '<div class="field"><label>' + t("Organization") + '</label><input type="text" data-bind="appOrg" placeholder="' + t("University or provider name") + '" class="input"></div>' +
+        '<div class="field"><label>' + t("Deadline") + '</label><input type="date" data-bind="appDeadline" class="input"></div>' +
+        '<div class="field"><label>' + t("Current stage") + '</label><select data-bind="appStage" class="select">' +
+          stages.map(function (s) { return '<option value="' + s.id + '">' + t(s.name) + "</option>"; }).join("") +
+        '</select></div>' +
+        '<div class="field"><label>' + t("Notes") + '</label><textarea data-bind="appNotes" placeholder="' + t("Any notes about this application") + '" class="input" rows="3"></textarea></div>' +
+      '</div>' +
+      '<div class="modal-actions"><button class="btn btn--ghost" data-action="close-modal">' + t("Cancel") + '</button>' +
+      '<button class="btn btn--primary" data-action="save-application">' + t("Add") + '</button></div>');
+    // Store temp data via closure
+    state._appDraft = { name: "", type: "university", org: "", deadline: "", stage: "research", notes: "" };
+    // Override onBind for app draft fields
+    var origBind = onBind;
+    onBind = function (field, value) {
+      var map = { appName: "name", appType: "type", appOrg: "org", appDeadline: "deadline", appStage: "stage", appNotes: "notes" };
+      if (map[field]) {
+        state._appDraft[map[field]] = value;
+        return;
+      }
+      origBind(field, value);
+    };
+    // Restore after save
+    state._restoreBind = function () { onBind = origBind; };
+  }
+
+  function saveApplication(el) {
+    var d = state._appDraft || {};
+    if (!d.name || !d.name.trim()) {
+      U.toast(t("Please enter a name for this application."), "warn");
+      return;
+    }
+    var app = {
+      id: "app-" + Date.now(),
+      name: d.name.trim(),
+      type: d.type || "university",
+      org: d.org || "",
+      deadline: d.deadline || "",
+      stage: d.stage || "research",
+      notes: d.notes || "",
+      createdAt: new Date().toISOString(),
+    };
+    state.applications = state.applications || [];
+    state.applications.push(app);
+    save();
+    closeModal();
+    if (state._restoreBind) state._restoreBind();
+    U.toast(t("Application added."));
+    go("tracker");
+  }
+
+  function updateAppStage(appId, newStage) {
+    if (!state.applications) return;
+    var app = state.applications.find(function (a) { return a.id === appId; });
+    if (app) { app.stage = newStage; save(); render(); U.toast(t("Application updated.")); }
+  }
+
+  function removeApplication(appId) {
+    if (!state.applications) return;
+    state.applications = state.applications.filter(function (a) { return a.id !== appId; });
+    save();
+    closeModal();
+    render();
+    U.toast(t("Application removed."));
   }
 
   /* ------------------------------------------------------------------ boot */

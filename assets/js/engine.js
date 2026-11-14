@@ -182,12 +182,21 @@
     const visa = d.visaFee;
     const flights = d.flights;
     const application = d.applicationFee;
-    const oneTime = visa + flights + application;
-    const total = tuition + living + insurance + oneTime;
+    // Phase 6: Additional cost components
+    const booksSupplies = Math.round(tuition * 0.04 + 300);
+    const residencePermit = Math.round(visa * 0.6);
+    const oneTimeSetup = Math.round(500 * lifestyle); // deposit, household setup, phone/SIM, initial transport
+    const oneTime = visa + flights + application + residencePermit + oneTimeSetup;
+    const recurringAnnual = tuition + living + insurance + booksSupplies;
+    const total = recurringAnnual + oneTime;
     return {
       destination: d, tuition, living, insurance, visa, flights, application,
-      oneTime, total, duration: d.duration[level] || 2,
+      booksSupplies, residencePermit, oneTimeSetup,
+      oneTime, recurringAnnual, total,
+      duration: d.duration[level] || 2,
       monthlyLiving: Math.round(d.livingMonthly * lifestyle),
+      // Multi-year totals
+      totalProgram: Math.round(tuition * (d.duration[level] || 2) + living * (d.duration[level] || 2) + insurance * (d.duration[level] || 2) + booksSupplies * (d.duration[level] || 2) + oneTime),
     };
   }
 

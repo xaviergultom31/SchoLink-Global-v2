@@ -9,7 +9,7 @@
   const META = {
     name: "SchoLink",
     tagline: "Scholarships without borders.",
-    version: "3.0.0",
+    version: "4.0.0",
     stats: {
       scholarships: 37,
       destinations: 12,

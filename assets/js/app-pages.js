@@ -16,10 +16,12 @@
     ["dashboard", "home", "Dashboard"],
     ["matches", "target", "My matches"],
     ["universities", "graduation", "Universities"],
+    ["tracker", "briefcase", "Applications"],
+    ["prep", "book", "Prep Center"],
+    ["consult", "sparkle", "AI Consult"],
     ["report", "file", "My report"],
     ["plan", "route", "My plan"],
     ["indonesia", "globe", "Indonesia"],
-    ["destinations", "globe", "Destinations"],
     ["costs", "wallet", "Cost calculator"],
     ["settings", "settings", "Settings"],
   ];
@@ -57,7 +59,7 @@
   }
 
   function mobileNav(active) {
-    return `<nav class="mobile-nav">${[["dashboard", "home"], ["matches", "target"], ["universities", "graduation"], ["report", "file"], ["plan", "route"]].map((n) => `<a class="mnav-item${active === n[0] ? " active" : ""}" href="#/${n[0]}">${icon(n[1])}<span>${t(NAV.find((x) => x[0] === n[0])[2])}</span></a>`).join("")}</nav>`;
+    return `<nav class="mobile-nav">${[["dashboard", "home"], ["matches", "target"], ["universities", "graduation"], ["tracker", "briefcase"], ["prep", "book"]].map((n) => `<a class="mnav-item${active === n[0] ? " active" : ""}" href="#/${n[0]}">${icon(n[1])}<span>${t(NAV.find((x) => x[0] === n[0])[2])}</span></a>`).join("")}</nav>`;
   }
 
   /* ---------------------------------------------------------------- dashboard */
@@ -870,6 +872,244 @@
     "</div>";
   }
 
+  /* --------------------------------------------------------- Preparation Center (Phase 3) */
+  function prepCenter(state) {
+    const PREP = global.SCHO_PREP;
+    if (!PREP) return '<div class="page app-page">' + P.emptyState("alert", t("Preparation data not loaded"), t("Please refresh the page.")) + "</div>";
+    const p = state.profile;
+
+    // Determine which test to focus on
+    var focusTest = "ielts";
+    if (p && p.tests) {
+      var testPriority = ["ielts", "toefl", "duolingo", "sat", "gre", "utbk"];
+      for (var i = 0; i < testPriority.length; i++) {
+        if (p.tests[testPriority[i]] && p.tests[testPriority[i]].status !== "na") {
+          focusTest = testPriority[i];
+          break;
+        }
+      }
+    }
+
+    var ieltsModules = PREP.IELTS_PREP || [];
+    var otherEngModules = PREP.OTHER_ENGLISH_PREP || [];
+    var stdTestModules = PREP.STANDARD_TEST_PREP || [];
+    var docModules = PREP.DOC_PREP || [];
+    var interviewModules = PREP.INTERVIEW_PREP || [];
+    var studyPlans = PREP.STUDY_PLANS || [];
+
+    return '<div class="page app-page">' +
+      '<div class="page-head"><div><div class="eyebrow">' + t("Preparation Center") + '</div>' +
+      '<h1 class="h1">' + t("Everything you need to get ready.") + '</h1>' +
+      '<p class="sub">' + t("Test prep, document guides, study plans, and interview practice — all in one place. Free resources, curated by topic.") + '</p></div></div>' +
+
+      // Quick links
+      '<div class="grid grid-4 mt-2">' +
+        '<a class="card card--pad card--clickable" href="#/prep-ielts" style="text-decoration:none;color:inherit">' +
+          '<div class="row" style="gap:8px">' + icon("language") + '<b>' + t("IELTS Prep") + "</b></div>" +
+          '<div class="tiny mt-1">' + t("Listening, Reading, Writing, Speaking") + "</div></a>" +
+        '<a class="card card--pad card--clickable" href="#/prep-tests" style="text-decoration:none;color:inherit">' +
+          '<div class="row" style="gap:8px">' + icon("target") + '<b>' + t("Test Prep") + "</b></div>" +
+          '<div class="tiny mt-1">' + t("TOEFL, SAT, GRE, UTBK") + "</div></a>" +
+        '<a class="card card--pad card--clickable" href="#/prep-docs" style="text-decoration:none;color:inherit">' +
+          '<div class="row" style="gap:8px">' + icon("file") + '<b>' + t("Documents") + "</b></div>" +
+          '<div class="tiny mt-1">' + t("Personal statement, CV, recommendations") + "</div></a>" +
+        '<a class="card card--pad card--clickable" href="#/prep-plans" style="text-decoration:none;color:inherit">' +
+          '<div class="row" style="gap:8px">' + icon("route") + '<b>' + t("Study Plans") + "</b></div>" +
+          '<div class="tiny mt-1">' + t("Week-by-week schedules") + "</div></a>" +
+      "</div>" +
+
+      // IELTS section
+      '<div class="card card--pad mt-3">' +
+        '<div class="card-hd"><div class="h3">' + icon("language") + t("IELTS Preparation") + "</div>" + badge(ieltsModules.length + " " + t("modules"), "teal") + "</div>" +
+        '<div class="grid grid-2 mt-2">' + ieltsModules.map(function (m) {
+          return '<div class="prep-module" data-action="open-prep" data-id="' + m.id + '" style="cursor:pointer">' +
+            '<div class="row" style="gap:6px">' +
+              '<span class="badge badge--' + (m.difficulty === "advanced" ? "red" : m.difficulty === "intermediate" ? "amber" : "green") + '">' + t(m.difficulty) + "</span>" +
+              "<b>" + esc(m.title) + "</b></div>" +
+            '<div class="tiny mt-1">' + esc(m.description) + "</div>" +
+            '<div class="row mt-2" style="gap:6px">' +
+              '<span class="chip" style="cursor:default">' + icon("clock", "i-sm") + esc(m.duration) + "</span>" +
+              '<span class="chip" style="cursor:default">' + icon("target", "i-sm") + t("Target") + " " + m.targetScore + "</span>" +
+              '<span class="chip" style="cursor:default">' + m.resources.length + " " + t("resources") + "</span>" +
+            "</div></div>";
+        }).join("") + "</div>" +
+      "</div>" +
+
+      // Other English tests
+      '<div class="card card--pad mt-3">' +
+        '<div class="card-hd"><div class="h3">' + icon("language") + t("Other English Tests") + "</div></div>" +
+        '<div class="grid grid-2 mt-2">' + otherEngModules.map(function (m) {
+          return '<div class="prep-module" data-action="open-prep" data-id="' + m.id + '" style="cursor:pointer">' +
+            '<div class="row" style="gap:6px"><b>' + esc(m.title) + "</b>" +
+              '<span class="badge badge--' + (m.difficulty === "beginner" ? "green" : "amber") + '">' + t(m.difficulty) + "</span></div>" +
+            '<div class="tiny mt-1">' + esc(m.description) + "</div>" +
+            '<div class="row mt-2" style="gap:6px">' +
+              '<span class="chip" style="cursor:default">' + icon("clock", "i-sm") + esc(m.duration) + "</span>" +
+              '<span class="chip" style="cursor:default">' + m.resources.length + " " + t("resources") + "</span>" +
+            "</div></div>";
+        }).join("") + "</div>" +
+      "</div>" +
+
+      // Standardized tests
+      '<div class="card card--pad mt-3">' +
+        '<div class="card-hd"><div class="h3">' + icon("target") + t("Standardized Test Prep") + "</div></div>" +
+        '<div class="grid grid-2 mt-2">' + stdTestModules.map(function (m) {
+          return '<div class="prep-module" data-action="open-prep" data-id="' + m.id + '" style="cursor:pointer">' +
+            '<div class="row" style="gap:6px"><b>' + esc(m.title) + "</b>" +
+              '<span class="badge badge--' + (m.difficulty === "advanced" ? "red" : "amber") + '">' + t(m.difficulty) + "</span></div>" +
+            '<div class="tiny mt-1">' + esc(m.description) + "</div>" +
+            '<div class="row mt-2" style="gap:6px">' +
+              '<span class="chip" style="cursor:default">' + icon("clock", "i-sm") + esc(m.duration) + "</span>" +
+              '<span class="chip" style="cursor:default">' + icon("target", "i-sm") + t("Target") + " " + m.targetScore + "</span>" +
+              '<span class="chip" style="cursor:default">' + m.resources.length + " " + t("resources") + "</span>" +
+            "</div></div>";
+        }).join("") + "</div>" +
+      "</div>" +
+
+      // Documents
+      '<div class="card card--pad mt-3">' +
+        '<div class="card-hd"><div class="h3">' + icon("file") + t("Application Documents") + "</div></div>" +
+        '<div class="grid grid-2 mt-2">' + docModules.map(function (m) {
+          return '<div class="prep-module" data-action="open-prep" data-id="' + m.id + '" style="cursor:pointer">' +
+            '<div class="row" style="gap:6px"><b>' + esc(m.title) + "</b></div>" +
+            '<div class="tiny mt-1">' + esc(m.description) + "</div>" +
+            '<div class="row mt-2" style="gap:6px">' +
+              '<span class="chip" style="cursor:default">' + icon("clock", "i-sm") + esc(m.duration) + "</span>" +
+              '<span class="chip" style="cursor:default">' + (m.sections || m.resources || []).length + " " + t("steps") + "</span>" +
+            "</div></div>";
+        }).join("") + "</div>" +
+      "</div>" +
+
+      // Study Plans
+      '<div class="card card--pad mt-3">' +
+        '<div class="card-hd"><div class="h3">' + icon("route") + t("Study Plan Templates") + "</div></div>" +
+        '<div class="list mt-2">' + studyPlans.map(function (plan) {
+          return '<div class="list-item" data-action="open-plan" data-id="' + plan.id + '" style="cursor:pointer">' +
+            '<div class="li-icon">' + icon("route", "i-sm") + "</div>" +
+            "<div><div class=\"li-title\">" + esc(plan.title) + "</div>" +
+            '<div class="li-sub">' + plan.weeks.length + " " + t("weeks") + " · " + plan.totalHours + " " + t("hours total") + " · " + t("Target") + " " + plan.targetScore + "</div></div>" +
+            '<div class="li-right">' + badge(plan.testType.toUpperCase(), "grey") + "</div></div>";
+        }).join("") + "</div>" +
+      "</div>" +
+
+      // Interview Prep
+      '<div class="card card--pad mt-3">' +
+        '<div class="card-hd"><div class="h3">' + icon("user") + t("Interview Preparation") + "</div></div>" +
+        '<div class="grid grid-2 mt-2">' + interviewModules.map(function (m) {
+          return '<div class="prep-module" data-action="open-prep" data-id="' + m.id + '" style="cursor:pointer">' +
+            '<div class="row" style="gap:6px"><b>' + esc(m.title) + "</b>" +
+              '<span class="badge badge--' + (m.difficulty === "advanced" ? "red" : "amber") + '">' + t(m.difficulty) + "</span></div>" +
+            '<div class="tiny mt-1">' + esc(m.description) + "</div>" +
+            '<div class="row mt-2" style="gap:6px">' +
+              '<span class="chip" style="cursor:default">' + icon("clock", "i-sm") + esc(m.duration) + "</span>" +
+              '<span class="chip" style="cursor:default">' + m.commonQuestions.length + " " + t("practice questions") + "</span>" +
+            "</div></div>";
+        }).join("") + "</div>" +
+      "</div>" +
+    "</div>";
+  }
+
+  /* --------------------------------------------------------- Application Tracker (Phase 5) */
+  function tracker(state) {
+    var apps = state.applications || [];
+    var PREP = global.SCHO_PREP;
+    var stages = PREP ? PREP.APP_STAGES : [];
+
+    // Stats by stage
+    var stageCounts = {};
+    apps.forEach(function (a) { stageCounts[a.stage] = (stageCounts[a.stage] || 0) + 1; });
+
+    return '<div class="page app-page">' +
+      '<div class="page-head"><div><div class="eyebrow">' + t("Application Tracker") + '</div>' +
+      '<h1 class="h1">' + t("Track every application.") + "</h1>" +
+      '<p class="sub">' + t("Keep all your university and scholarship applications in one place. Update stages, set deadlines, and never miss a step.") + '</p></div>' +
+      '<div class="page-head-actions"><button class="btn btn--primary" data-action="add-application">' + icon("plus", "i-sm") + t("Add application") + "</button></div></div>' +
+
+      // Stats
+      '<div class="grid grid-4 mt-2">' +
+        U.statCard(t("Total applications"), String(apps.length), t("in progress or completed"), "briefcase") +
+        U.statCard(t("Active"), String(apps.filter(function (a) { return ["research", "shortlisted", "documents", "submitted", "interview"].indexOf(a.stage) >= 0; }).length), t("currently working on"), "clock", "amber") +
+        U.statCard(t("Offers"), String(stageCounts.offered || 0), t("admission or scholarship offers"), "checkCircle", "green") +
+        U.statCard(t("Accepted"), String(stageCounts.accepted || 0), t("final decisions"), "star", "green") +
+      "</div>" +
+
+      (apps.length ?
+        // Application list grouped by stage
+        '<div class="mt-3">' + stages.filter(function (s) { return s.id !== "withdrawn"; }).map(function (stage) {
+          var stageApps = apps.filter(function (a) { return a.stage === stage.id; });
+          if (!stageApps.length) return "";
+          return '<div class="card card--pad mt-2">' +
+            '<div class="card-hd"><div class="h3">' + icon(stage.icon) + t(stage.name) + "</div>" + badge(String(stageApps.length), stage.color) + "</div>" +
+            '<div class="list">' + stageApps.map(function (a) {
+              var dl = a.deadline ? new Date(a.deadline) : null;
+              var daysLeft = dl ? Math.ceil((dl - new Date()) / 86400000) : null;
+              return '<div class="list-item" data-action="open-app-detail" data-id="' + a.id + '" style="cursor:pointer">' +
+                '<div class="li-icon">' + icon(a.type === "scholarship" ? "target" : "graduation", "i-sm") + "</div>" +
+                "<div><div class=\"li-title\">" + esc(a.name) + "</div>" +
+                '<div class="li-sub">' + esc(a.org || "") + (a.deadline ? " · " + t("Deadline") + ": " + a.deadline : "") + "</div></div>" +
+                '<div class="li-right">' + (daysLeft !== null && daysLeft >= 0 ? badge(t("{n} days left", { n: daysLeft }), daysLeft < 14 ? "red" : "amber") : "") + "</div></div>";
+            }).join("") + "</div></div>";
+        }).join("") + "</div>"
+      :
+        P.emptyState("briefcase", t("No applications yet"), t("Add your first university or scholarship application to start tracking."),
+          '<button class="btn btn--primary" data-action="add-application">' + icon("plus", "i-sm") + t("Add your first application") + "</button>")
+      ) +
+    "</div>";
+  }
+
+  /* --------------------------------------------------------- AI Consultation (Phase 4) */
+  function aiConsult(state) {
+    var PREP = global.SCHO_PREP;
+    if (!PREP || !PREP.AI_KNOWLEDGE) return '<div class="page app-page">' + P.emptyState("alert", t("AI consultation not loaded"), t("Please refresh.")) + "</div>";
+
+    var cats = PREP.AI_KNOWLEDGE.categories || [];
+    var advice = PREP.AI_KNOWLEDGE.advice || {};
+    var selectedCat = state.aiCategory || "strategy";
+    var cat = cats.find(function (c) { return c.id === selectedCat; }) || cats[0];
+
+    return '<div class="page app-page">' +
+      '<div class="page-head"><div><div class="eyebrow">' + t("AI Consultation") + '</div>' +
+      '<h1 class="h1">' + t("Ask SchoLink AI.") + "</h1>" +
+      '<p class="sub">' + t("Get instant guidance on applications, funding, tests, visas, and more. Choose a topic to see common questions and expert answers.") + '</p></div></div>' +
+
+      '<div class="split mt-2">' +
+        '<div class="stack" style="flex:0 0 220px">' +
+          '<div class="card card--pad"><div class="card-hd"><div class="h3">' + icon("list") + t("Topics") + "</div></div>' +
+          '<div class="list">' + cats.map(function (c) {
+            return '<button class="list-item" style="cursor:pointer;border:none;background:none;width:100%;text-align:left' + (c.id === selectedCat ? ";background:var(--teal-soft)" : "") + '" data-action="ai-category" data-value="' + c.id + '">' +
+              '<div class="li-icon">' + icon("chevronRight", "i-sm") + "</div>" +
+              "<div><div class=\"li-title\">" + esc(c.name) + "</div></div></button>";
+          }).join("") + "</div></div>" +
+        "</div>" +
+
+        '<div class="stack" style="flex:1">' +
+          '<div class="card card--pad">' +
+            '<div class="card-hd"><div class="h3">' + icon("sparkle") + esc(cat.name) + "</div></div>" +
+            '<div class="stack mt-2">' + cat.questions.map(function (q, i) {
+              var key = q.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+              var answer = advice[key];
+              return '<div class="ai-q-block" style="border:1px solid var(--line);border-radius:12px;padding:16px">' +
+                '<div class="row" style="gap:6px"><b>' + icon("help", "i-sm") + esc(q) + "</b></div>" +
+                (answer ?
+                  '<div class="mt-1" style="font-size:14px;line-height:1.6">' + esc(answer.a) + "</div>"
+                :
+                  '<div class="mt-1 tiny muted">' + t("Detailed answer coming soon. In the meantime, check the related resources in the Preparation Center.") + "</div>"
+                ) +
+                "</div>";
+            }).join("") + "</div>" +
+          "</div>" +
+
+          '<div class="card card--pad card--sand">' +
+            '<div class="h3">' + icon("info") + t("About SchoLink AI") + "</div>" +
+            '<p class="small muted mt-1">' + t("This is a knowledge-based consultation tool with curated answers to the most common questions. It is not a replacement for official guidance — always verify deadlines and requirements with the official university or scholarship provider.") + "</p>" +
+            '<a class="btn btn--ghost mt-2" href="#/universities">' + t("Browse universities") + icon("arrow", "i-sm") + "</a>" +
+            '<a class="btn btn--ghost mt-2" href="#/prep">' + t("Preparation Center") + icon("arrow", "i-sm") + "</a>" +
+          "</div>" +
+        "</div>" +
+      "</div>" +
+    "</div>";
+  }
+
   /* ----------------------------------------------------------------- settings */
   function settings(state) {
     const p = state.profile;
@@ -1022,5 +1262,5 @@
     </div>`;
   }
 
-  global.AppPages = { appShell, dashboard, matches, universities, report, indonesia, plan, settings, drawerScholarship, drawerDestination, drawerUniversity };
+  global.AppPages = { appShell, dashboard, matches, universities, tracker, prepCenter, aiConsult, report, indonesia, plan, settings, drawerScholarship, drawerDestination, drawerUniversity };
 })(window);
