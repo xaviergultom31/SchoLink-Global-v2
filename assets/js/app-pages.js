@@ -800,7 +800,7 @@
 
     // Related scholarships
     var schHtml = schMatches.length ?
-      '<div class="card card--pad"><div class="card-hd"><div class="h3">' + icon("target") + t("Scholarships for this university") + "</div></div>' +
+      '<div class="card card--pad"><div class="card-hd"><div class="h3">' + icon("target") + t("Scholarships for this university") + '</div></div>' +
       '<div class="list">' + schMatches.map(function (s) {
         return '<div class="list-item" data-action="open-scholarship" data-id="' + s.id + '" style="cursor:pointer">' +
           '<div class="li-icon">' + icon("target", "i-sm") + "</div>" +
@@ -843,19 +843,19 @@
       (readiness.fulfilled.length ?
         '<div class="card card--pad"><div class="card-hd"><div class="h3">' + icon("checkCircle") + t("Requirements met") + "</div>" + badge(String(readiness.fulfilled.length), "green") + "</div>" +
         '<div class="check-list">' + readiness.fulfilled.map(function (f) {
-          return '<div class="check-item"><div class="ci-icon">' + icon("check", "i-sm") + "</div><div><div class="ci-title">' + esc(f.requirement) + "</div><div class=\"ci-desc\">" + esc(f.detail) + "</div></div></div>";
+          return '<div class="check-item"><div class="ci-icon">' + icon("check", "i-sm") + '</div><div><div class="ci-title">' + esc(f.requirement) + '</div><div class="ci-desc">' + esc(f.detail) + '</div></div></div></div>';
         }).join("") + "</div></div>" : "") +
 
       (readiness.weaknesses.length ?
         '<div class="card card--pad"><div class="card-hd"><div class="h3">' + icon("alert") + t("Close — needs work") + "</div>" + badge(String(readiness.weaknesses.length), "amber") + "</div>" +
         '<div class="check-list">' + readiness.weaknesses.map(function (w) {
-          return '<div class="check-item warn"><div class="ci-icon">' + icon("alert", "i-sm") + "</div><div><div class="ci-title">' + esc(w.requirement) + "</div><div class="ci-desc">' + esc(w.detail) + "</div></div></div>";
+          return '<div class="check-item warn"><div class="ci-icon">' + icon("alert", "i-sm") + '</div><div><div class="ci-title">' + esc(w.requirement) + '</div><div class="ci-desc">' + esc(w.detail) + '</div></div></div></div>';
         }).join("") + "</div></div>" : "") +
 
       (readiness.missing.length ?
         '<div class="card card--pad"><div class="card-hd"><div class="h3">' + icon("x") + t("Missing requirements") + "</div>" + badge(String(readiness.missing.length), "red") + "</div>" +
         '<div class="check-list">' + readiness.missing.map(function (m) {
-          return '<div class="check-item warn"><div class="ci-icon">' + icon("x", "i-sm") + "</div><div><div class="ci-title">' + esc(m.requirement) + "</div><div class="ci-desc">' + esc(m.detail) + "</div></div></div>";
+          return '<div class="check-item warn"><div class="ci-icon">' + icon("x", "i-sm") + '</div><div><div class="ci-title">' + esc(m.requirement) + '</div><div class="ci-desc">' + esc(m.detail) + '</div></div></div></div>';
         }).join("") + "</div></div>" : "") +
 
       ieltsTable +
@@ -1023,7 +1023,7 @@
       '<div class="page-head"><div><div class="eyebrow">' + t("Application Tracker") + '</div>' +
       '<h1 class="h1">' + t("Track every application.") + "</h1>" +
       '<p class="sub">' + t("Keep all your university and scholarship applications in one place. Update stages, set deadlines, and never miss a step.") + '</p></div>' +
-      '<div class="page-head-actions"><button class="btn btn--primary" data-action="add-application">' + icon("plus", "i-sm") + t("Add application") + "</button></div></div>' +
+      '<div class="page-head-actions"><button class="btn btn--primary" data-action="add-application">' + icon("plus", "i-sm") + t("Add application") + '</button></div></div>' +
 
       // Stats
       '<div class="grid grid-4 mt-2">' +
@@ -1074,7 +1074,7 @@
 
       '<div class="split mt-2">' +
         '<div class="stack" style="flex:0 0 220px">' +
-          '<div class="card card--pad"><div class="card-hd"><div class="h3">' + icon("list") + t("Topics") + "</div></div>' +
+          '<div class="card card--pad"><div class="card-hd"><div class="h3">' + icon("list") + t("Topics") + '</div></div>' +
           '<div class="list">' + cats.map(function (c) {
             return '<button class="list-item" style="cursor:pointer;border:none;background:none;width:100%;text-align:left' + (c.id === selectedCat ? ";background:var(--teal-soft)" : "") + '" data-action="ai-category" data-value="' + c.id + '">' +
               '<div class="li-icon">' + icon("chevronRight", "i-sm") + "</div>" +

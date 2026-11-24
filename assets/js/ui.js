@@ -46,6 +46,10 @@
     lock: '<rect x="4.5" y="10" width="15" height="10.5" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',
     wifiOff: '<path d="M2 2l20 20"/><path d="M8.5 16a5 5 0 0 1 7 0"/><path d="M5 12a10 10 0 0 1 5-2.6"/><path d="M14 9.4A10 10 0 0 1 19 12"/><path d="M2 8.5a15 15 0 0 1 4-2.8"/><path d="M18 5.7a15 15 0 0 1 4 2.8"/><circle cx="12" cy="19" r="1"/>',
     play: '<circle cx="12" cy="12" r="9"/><path d="m10 8.5 5.5 3.5-5.5 3.5z"/>',
+    file: '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/>',
+    plus: '<path d="M12 5v14"/><path d="M5 12h14"/>',
+    bookmark: '<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>',
+    list: '<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',
   };
 
   function icon(name, cls) {

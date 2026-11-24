@@ -1354,4 +1354,23 @@
     },
     {
       id: "unsoed", name: "Universitas Jenderal Soedirman", dest: "id", type: "PTN",
-      city
+      city: "Purwokerto, Jawa Tengah", country: "Indonesia",
+      tuition: { Bachelor: 6, Master: 10, PhD: 8 }, livingMonthly: 128, minGpa: 2.7,
+      ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
+      tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
+      scholarships: ["kip-kuliah"], fields: ["science", "social", "economics", "engineering"], level: ["Bachelor", "Master", "PhD"],
+      url: "https://unsoed.ac.id/", admissionUrl: "https://pmb.unsoed.ac.id/",
+      routes: ["SNBP", "SNBT", "Mandiri"], competitiveness: "moderate", accreditation: "Unggul", code: "UNSOED",
+      admission: adm(
+        ["Rapor", "Birth certificate", "SKHUN"],
+        "Not required for SNBP/SNBT",
+        0, "Not required", "Some Mandiri", 0,
+        "https://pmb.unsoed.ac.id/",
+        ["Rapor grades X-XII", "UTBK score"]
+      ),
+      sourceTier: 1, verified: "2026-06-01",
+    },
+  ];
+
+  global.SCHO_UNIS = { UNIVERSITIES_EXPANDED: UNIVERSITIES_EXPANDED };
+})(window);
