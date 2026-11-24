@@ -609,12 +609,15 @@
     load();
     state.route = routeFromHash();
     if (!SITE_ROUTES.concat(APP_ROUTES, ["start"]).includes(state.route)) state.route = "home";
+    bind();   // attach event listeners BEFORE any async work, so clicks/hashchanges aren't missed
     if (I.state.lang !== "en") {
       try { await I.loadLang(I.state.lang); } catch (e) { I.state.lang = "en"; }
     }
     I.applyDocument();
     refreshMatches();
-    bind();
+    // Re-read hash in case user navigated during the async language load above
+    state.route = routeFromHash();
+    if (!SITE_ROUTES.concat(APP_ROUTES, ["start"]).includes(state.route)) state.route = "home";
     render();
     if ("serviceWorker" in navigator && location.protocol.indexOf("http") === 0) {
       navigator.serviceWorker.register("sw.js").catch(() => {});
