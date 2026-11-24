@@ -1,6 +1,7 @@
 /* =========================================================================
-   SchoLink — GrapesJS visual editor integration
-   Loads on demand when user clicks "Edit with GrapesJS" button.
+   SchoLink — GrapesJS visual editor integration (private access)
+   Only activates when URL contains ?edit=xavier123
+   Regular visitors see nothing — no button, no script load, no trace.
    ========================================================================= */
 (function (global) {
   "use strict";
@@ -374,8 +375,26 @@
     else openEditor();
   }
 
-  /* Auto-init: add the floating button when the page loads */
+  /* =========================================================================
+     SECRET KEY — only show editor when URL contains ?edit=xavier123
+     Without the correct key, the editor button is invisible to everyone.
+     ========================================================================= */
+  var EDIT_SECRET = "xavier123";
+
+  /* Check if current URL has the correct edit key */
+  function hasEditAccess() {
+    try {
+      var params = new URLSearchParams(global.location.search);
+      return params.get("edit") === EDIT_SECRET;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /* Auto-init: add the floating button ONLY if URL has ?edit=xavier123 */
   function init() {
+    if (!hasEditAccess()) return; /* No access — do nothing, no button, no trace */
+
     /* Only show button on desktop / larger screens */
     function checkSize() {
       var btn = document.getElementById(TOGGLE_BTN_ID);
