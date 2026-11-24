@@ -1,5 +1,5 @@
 /* SchoLink Global service worker — network-first, cache fallback. */
-const CACHE = "scholink-global-v5";
+const CACHE = "scholink-global-v6";
 const ASSETS = [
   "./", "./index.html", "./manifest.webmanifest",
   "./assets/css/app.css", "./assets/css/theme.css",
@@ -7,6 +7,7 @@ const ASSETS = [
   "./assets/js/data-unis.js", "./assets/js/data-expanded.js", "./assets/js/data-prep.js",
   "./assets/js/engine.js", "./assets/js/admission-engine.js",
   "./assets/js/ui.js", "./assets/js/pages.js", "./assets/js/app-pages.js", "./assets/js/app.js",
+  "./assets/js/grapesjs-editor.js",
   "./assets/favicon.svg",
 ];
 
