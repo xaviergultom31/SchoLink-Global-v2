@@ -12,7 +12,7 @@
     version: "4.0.0",
     stats: {
       scholarships: 37,
-      destinations: 38,
+      destinations: 37,
       universities: 18,
       languages: 27,
       origins: 36,
@@ -518,18 +518,9 @@
       highlights: ["Manaaki New Zealand scholarships", "Research-friendly PhD fees", "Post-study work visa"],
       universities: [],
     },
-    {
-      id: "gb", name: "United Kingdom", flag: "🇬🇧", region: "Europe & Central Asia", language: "English",
-      tuition: {Bachelor:[18000,32000],Master:[20000,36000],PhD:[18000,28000]},
-      livingMonthly: 1600, insuranceYear: 1035, visaFee: 750, flights: 800, applicationFee: 0,
-      duration: {Bachelor:3,Master:1,PhD:4}, work: "2-year Graduate Route for eligible graduates (3 years for PhD)",
-      intakes: ["September", "January"], summary: "One-year master’s degrees keep total costs lower, and Chevening/Commonwealth cover almost everything.",
-      highlights: ["One-year master’s programmes", "Graduate Route work visa", "Many full scholarships for developing countries"],
-      universities: ["oxford", "cambridge", "imperial", "edinburgh"],
-    },
 ];
 
-  const DEST_CODES = { us: "US", uk: "GB", ca: "CA", au: "AU", de: "DE", nl: "NL", jp: "JP", kr: "KR", sg: "SG", ae: "AE", cn: "CN", tr: "TR", id: "ID", ch: "CH", it: "IT", se: "SE", no: "NO", fi: "FI", be: "BE", dk: "DK", ie: "IE", hu: "HU", pl: "PL", cz: "CZ", es: "ES", fr: "FR", ru: "RU", sa: "SA", qa: "QA", in: "IN", bn: "BN", tw: "TW", ph: "PH", my: "MY", th: "TH", vn: "VN", nz: "NZ", gb: "GB" };
+  const DEST_CODES = { us: "US", uk: "GB", ca: "CA", au: "AU", de: "DE", nl: "NL", jp: "JP", kr: "KR", sg: "SG", ae: "AE", cn: "CN", tr: "TR", id: "ID", ch: "CH", it: "IT", se: "SE", no: "NO", fi: "FI", be: "BE", dk: "DK", ie: "IE", hu: "HU", pl: "PL", cz: "CZ", es: "ES", fr: "FR", ru: "RU", sa: "SA", qa: "QA", in: "IN", bn: "BN", tw: "TW", ph: "PH", my: "MY", th: "TH", vn: "VN", nz: "NZ" };
   DESTINATIONS.forEach((d) => { d.code = DEST_CODES[d.id]; });
   ORIGINS.forEach((o) => { o.code = o.id.toUpperCase(); });
 
