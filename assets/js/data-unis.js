@@ -37,7 +37,7 @@
     /* ===== United States (12) ===== */
     {
       id: "harvard", name: "Harvard University", dest: "us", type: "international",
-      city: "Cambridge, MA", country: "United States",
+      city: "Cambridge, MA", country: "us",
       tuition: { Bachelor: 59000, Master: 55000, PhD: 0 }, livingMonthly: 2400, minGpa: 3.9,
       ielts: 7.5, ieltsCat: ielts(7.5, 7.5, 7.5, 7.5, 7.5), toefl: 100,
       tests: ["SAT/ACT", "GRE (grad)"], aid: "Need-based aid covering full demonstrated need",
@@ -54,7 +54,7 @@
     },
     {
       id: "mit", name: "Massachusetts Institute of Technology", dest: "us", type: "international",
-      city: "Cambridge, MA", country: "United States",
+      city: "Cambridge, MA", country: "us",
       tuition: { Bachelor: 61000, Master: 58000, PhD: 0 }, livingMonthly: 2400, minGpa: 3.9,
       ielts: 7.5, ieltsCat: ielts(7.0, 7.0, 7.0, 7.0, 7.5), toefl: 100,
       tests: ["SAT/ACT", "GRE (grad)"], aid: "Need-blind admission with full need-based aid",
@@ -71,7 +71,7 @@
     },
     {
       id: "stanford", name: "Stanford University", dest: "us", type: "international",
-      city: "Stanford, CA", country: "United States",
+      city: "Stanford, CA", country: "us",
       tuition: { Bachelor: 65000, Master: 62000, PhD: 0 }, livingMonthly: 2600, minGpa: 3.9,
       ielts: 7.5, ieltsCat: ielts(7.0, 7.0, 7.0, 7.0, 7.5), toefl: 100,
       tests: ["SAT/ACT", "GRE (grad)"], aid: "Need-based aid, no loans for low-income families",
@@ -88,7 +88,7 @@
     },
     {
       id: "yale", name: "Yale University", dest: "us", type: "international",
-      city: "New Haven, CT", country: "United States",
+      city: "New Haven, CT", country: "us",
       tuition: { Bachelor: 64000, Master: 45000, PhD: 0 }, livingMonthly: 2200, minGpa: 3.9,
       ielts: 7.0, ieltsCat: ielts(7.0, 7.0, 7.0, 7.0, 7.0), toefl: 100,
       tests: ["SAT/ACT"], aid: "Need-blind, full need met for all students",
@@ -105,7 +105,7 @@
     },
     {
       id: "princeton", name: "Princeton University", dest: "us", type: "international",
-      city: "Princeton, NJ", country: "United States",
+      city: "Princeton, NJ", country: "us",
       tuition: { Bachelor: 57000, Master: 53000, PhD: 0 }, livingMonthly: 2100, minGpa: 3.9,
       ielts: 7.0, ieltsCat: ielts(7.0, 7.0, 7.0, 7.0, 7.0), toefl: 100,
       tests: ["SAT/ACT"], aid: "Need-blind, full need met, no loans",
@@ -122,7 +122,7 @@
     },
     {
       id: "columbia", name: "Columbia University", dest: "us", type: "international",
-      city: "New York, NY", country: "United States",
+      city: "New York, NY", country: "us",
       tuition: { Bachelor: 66000, Master: 60000, PhD: 0 }, livingMonthly: 2500, minGpa: 3.85,
       ielts: 7.0, ieltsCat: ielts(7.0, 7.0, 7.0, 7.0, 7.0), toefl: 100,
       tests: ["SAT/ACT", "GRE (grad)"], aid: "Need-based aid for international students",
@@ -139,7 +139,7 @@
     },
     {
       id: "upenn", name: "University of Pennsylvania", dest: "us", type: "international",
-      city: "Philadelphia, PA", country: "United States",
+      city: "Philadelphia, PA", country: "us",
       tuition: { Bachelor: 61000, Master: 56000, PhD: 0 }, livingMonthly: 2300, minGpa: 3.9,
       ielts: 7.0, ieltsCat: ielts(7.0, 7.0, 7.0, 7.0, 7.0), toefl: 100,
       tests: ["SAT/ACT"], aid: "Need-based aid for international students",
@@ -156,7 +156,7 @@
     },
     {
       id: "caltech", name: "California Institute of Technology", dest: "us", type: "international",
-      city: "Pasadena, CA", country: "United States",
+      city: "Pasadena, CA", country: "us",
       tuition: { Bachelor: 60000, Master: 58000, PhD: 0 }, livingMonthly: 2300, minGpa: 3.9,
       ielts: 7.0, ieltsCat: ielts(7.0, 7.0, 7.0, 7.0, 7.0), toefl: 100,
       tests: ["SAT/ACT"], aid: "Need-based aid meeting full demonstrated need",
@@ -173,7 +173,7 @@
     },
     {
       id: "berkeley", name: "UC Berkeley", dest: "us", type: "international",
-      city: "Berkeley, CA", country: "United States",
+      city: "Berkeley, CA", country: "us",
       tuition: { Bachelor: 44000, Master: 30000, PhD: 0 }, livingMonthly: 2200, minGpa: 3.7,
       ielts: 7.0, ieltsCat: ielts(6.5, 6.5, 6.5, 6.5, 7.0), toefl: 90,
       tests: ["SAT/ACT (optional)"], aid: "Limited need-based aid for international students",
@@ -190,7 +190,7 @@
     },
     {
       id: "cmu", name: "Carnegie Mellon University", dest: "us", type: "international",
-      city: "Pittsburgh, PA", country: "United States",
+      city: "Pittsburgh, PA", country: "us",
       tuition: { Bachelor: 58000, Master: 48000, PhD: 0 }, livingMonthly: 2000, minGpa: 3.8,
       ielts: 7.5, ieltsCat: ielts(7.5, 7.5, 7.5, 7.5, 7.5), toefl: 102,
       tests: ["SAT/ACT"], aid: "Limited need-based aid for international students",
@@ -207,7 +207,7 @@
     },
     {
       id: "nyu", name: "New York University", dest: "us", type: "international",
-      city: "New York, NY", country: "United States",
+      city: "New York, NY", country: "us",
       tuition: { Bachelor: 56000, Master: 50000, PhD: 0 }, livingMonthly: 2500, minGpa: 3.7,
       ielts: 7.0, ieltsCat: ielts(7.0, 7.0, 7.0, 7.0, 7.0), toefl: 100,
       tests: ["SAT/ACT (optional)"], aid: "Need-based aid available",
@@ -224,7 +224,7 @@
     },
     {
       id: "nyuad", name: "NYU Abu Dhabi", dest: "ae", type: "international",
-      city: "Abu Dhabi", country: "United Arab Emirates",
+      city: "Abu Dhabi", country: "ae",
       tuition: { Bachelor: 58000, Master: 50000, PhD: 0 }, livingMonthly: 1700, minGpa: 3.8,
       ielts: 7.0, ieltsCat: ielts(7.0, 7.0, 7.0, 7.0, 7.0), toefl: 100,
       tests: ["SAT/ACT"], aid: "Global Distinguished Scholarship for all admitted students in need",
@@ -243,7 +243,7 @@
     /* ===== United Kingdom (10) ===== */
     {
       id: "oxford", name: "University of Oxford", dest: "uk", type: "international",
-      city: "Oxford", country: "United Kingdom",
+      city: "Oxford", country: "gb",
       tuition: { Bachelor: 39000, Master: 36000, PhD: 30000 }, livingMonthly: 1700, minGpa: 3.8,
       ielts: 7.5, ieltsCat: ielts(7.0, 7.0, 7.0, 7.0, 7.5), toefl: 110,
       tests: ["IELTS", "Admissions test"], aid: "Clarendon Fund and Rhodes Scholarships",
@@ -260,7 +260,7 @@
     },
     {
       id: "cambridge", name: "University of Cambridge", dest: "uk", type: "international",
-      city: "Cambridge", country: "United Kingdom",
+      city: "Cambridge", country: "gb",
       tuition: { Bachelor: 36000, Master: 34000, PhD: 29000 }, livingMonthly: 1700, minGpa: 3.8,
       ielts: 7.5, ieltsCat: ielts(7.0, 7.0, 7.0, 7.0, 7.5), toefl: 110,
       tests: ["IELTS"], aid: "Gates Cambridge covers full cost of postgraduate study",
@@ -277,7 +277,7 @@
     },
     {
       id: "imperial", name: "Imperial College London", dest: "uk", type: "international",
-      city: "London", country: "United Kingdom",
+      city: "London", country: "gb",
       tuition: { Bachelor: 40000, Master: 39000, PhD: 32000 }, livingMonthly: 2000, minGpa: 3.7,
       ielts: 7.0, ieltsCat: ielts(6.5, 6.5, 6.5, 6.5, 7.0), toefl: 100,
       tests: ["IELTS"], aid: "Departmental scholarships and GREAT awards",
@@ -294,7 +294,7 @@
     },
     {
       id: "edinburgh", name: "University of Edinburgh", dest: "uk", type: "international",
-      city: "Edinburgh", country: "United Kingdom",
+      city: "Edinburgh", country: "gb",
       tuition: { Bachelor: 28000, Master: 30000, PhD: 25000 }, livingMonthly: 1400, minGpa: 3.5,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 92,
       tests: ["IELTS"], aid: "Edinburgh Global Scholarships",
@@ -311,7 +311,7 @@
     },
     {
       id: "ucl", name: "University College London", dest: "uk", type: "international",
-      city: "London", country: "United Kingdom",
+      city: "London", country: "gb",
       tuition: { Bachelor: 35000, Master: 32000, PhD: 28000 }, livingMonthly: 1900, minGpa: 3.6,
       ielts: 7.0, ieltsCat: ielts(6.5, 6.5, 6.5, 6.5, 7.0), toefl: 100,
       tests: ["IELTS"], aid: "UCL Global Scholarship and departmental awards",
@@ -328,7 +328,7 @@
     },
     {
       id: "lse", name: "London School of Economics", dest: "uk", type: "international",
-      city: "London", country: "United Kingdom",
+      city: "London", country: "gb",
       tuition: { Bachelor: 33000, Master: 35000, PhD: 28000 }, livingMonthly: 1900, minGpa: 3.7,
       ielts: 7.0, ieltsCat: ielts(7.0, 7.0, 7.0, 7.0, 7.0), toefl: 100,
       tests: ["IELTS"], aid: "LSE Graduate Support Scheme and scholarships",
@@ -345,7 +345,7 @@
     },
     {
       id: "kings", name: "King's College London", dest: "uk", type: "international",
-      city: "London", country: "United Kingdom",
+      city: "London", country: "gb",
       tuition: { Bachelor: 31000, Master: 29000, PhD: 25000 }, livingMonthly: 1900, minGpa: 3.5,
       ielts: 7.0, ieltsCat: ielts(7.0, 7.0, 6.5, 7.0, 7.0), toefl: 100,
       tests: ["IELTS"], aid: "King's International Scholarship",
@@ -362,7 +362,7 @@
     },
     {
       id: "manchester", name: "University of Manchester", dest: "uk", type: "international",
-      city: "Manchester", country: "United Kingdom",
+      city: "Manchester", country: "gb",
       tuition: { Bachelor: 26000, Master: 27000, PhD: 24000 }, livingMonthly: 1200, minGpa: 3.4,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 90,
       tests: ["IELTS"], aid: "Global Futures Scholarship and GREAT awards",
@@ -379,7 +379,7 @@
     },
     {
       id: "warwick", name: "University of Warwick", dest: "uk", type: "international",
-      city: "Coventry", country: "United Kingdom",
+      city: "Coventry", country: "gb",
       tuition: { Bachelor: 27000, Master: 28000, PhD: 25000 }, livingMonthly: 1100, minGpa: 3.5,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 92,
       tests: ["IELTS"], aid: "Warwick Chancellor's International Scholarship",
@@ -396,7 +396,7 @@
     },
     {
       id: "glasgow", name: "University of Glasgow", dest: "uk", type: "international",
-      city: "Glasgow", country: "United Kingdom",
+      city: "Glasgow", country: "gb",
       tuition: { Bachelor: 24000, Master: 26000, PhD: 22000 }, livingMonthly: 1000, minGpa: 3.3,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 90,
       tests: ["IELTS"], aid: "Glasgow International Leadership Scholarship",
@@ -415,7 +415,7 @@
     /* ===== Canada (6) ===== */
     {
       id: "toronto", name: "University of Toronto", dest: "ca", type: "international",
-      city: "Toronto", country: "Canada",
+      city: "Toronto", country: "ca",
       tuition: { Bachelor: 45000, Master: 35000, PhD: 12000 }, livingMonthly: 1800, minGpa: 3.7,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 100,
       tests: ["IELTS", "Transcript"], aid: "Lester B. Pearson Scholarship for top international students",
@@ -432,7 +432,7 @@
     },
     {
       id: "ubc", name: "University of British Columbia", dest: "ca", type: "international",
-      city: "Vancouver", country: "Canada",
+      city: "Vancouver", country: "ca",
       tuition: { Bachelor: 38000, Master: 25000, PhD: 9500 }, livingMonthly: 1700, minGpa: 3.5,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 90,
       tests: ["IELTS"], aid: "International Scholars awards and Mastercard Foundation Scholars",
@@ -449,7 +449,7 @@
     },
     {
       id: "mcgill", name: "McGill University", dest: "ca", type: "international",
-      city: "Montreal", country: "Canada",
+      city: "Montreal", country: "ca",
       tuition: { Bachelor: 42000, Master: 32000, PhD: 10000 }, livingMonthly: 1500, minGpa: 3.7,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 90,
       tests: ["IELTS", "SAT (optional)"], aid: "McGill Entrance Scholarships and need-based aid",
@@ -466,7 +466,7 @@
     },
     {
       id: "waterloo", name: "University of Waterloo", dest: "ca", type: "international",
-      city: "Waterloo", country: "Canada",
+      city: "Waterloo", country: "ca",
       tuition: { Bachelor: 40000, Master: 28000, PhD: 9000 }, livingMonthly: 1400, minGpa: 3.6,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 90,
       tests: ["IELTS"], aid: "Waterloo International Student Scholarship",
@@ -483,7 +483,7 @@
     },
     {
       id: "alberta", name: "University of Alberta", dest: "ca", type: "international",
-      city: "Edmonton", country: "Canada",
+      city: "Edmonton", country: "ca",
       tuition: { Bachelor: 30000, Master: 22000, PhD: 8000 }, livingMonthly: 1300, minGpa: 3.3,
       ielts: 6.5, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.5), toefl: 86,
       tests: ["IELTS"], aid: "UA International Student Scholarship",
@@ -500,7 +500,7 @@
     },
     {
       id: "mcmaster", name: "McMaster University", dest: "ca", type: "international",
-      city: "Hamilton", country: "Canada",
+      city: "Hamilton", country: "ca",
       tuition: { Bachelor: 35000, Master: 26000, PhD: 9000 }, livingMonthly: 1400, minGpa: 3.5,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 86,
       tests: ["IELTS"], aid: "McMaster International Excellence Scholarship",
@@ -519,7 +519,7 @@
     /* ===== Australia (5) ===== */
     {
       id: "melbourne", name: "University of Melbourne", dest: "au", type: "international",
-      city: "Melbourne", country: "Australia",
+      city: "Melbourne", country: "au",
       tuition: { Bachelor: 38000, Master: 36000, PhD: 32000 }, livingMonthly: 1900, minGpa: 3.6,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 79,
       tests: ["IELTS"], aid: "Graduate Research Scholarships and Australia Awards",
@@ -536,7 +536,7 @@
     },
     {
       id: "sydney", name: "University of Sydney", dest: "au", type: "international",
-      city: "Sydney", country: "Australia",
+      city: "Sydney", country: "au",
       tuition: { Bachelor: 40000, Master: 38000, PhD: 34000 }, livingMonthly: 2000, minGpa: 3.5,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 85,
       tests: ["IELTS"], aid: "Sydney Scholars Awards and RTP",
@@ -553,7 +553,7 @@
     },
     {
       id: "anu", name: "Australian National University", dest: "au", type: "international",
-      city: "Canberra", country: "Australia",
+      city: "Canberra", country: "au",
       tuition: { Bachelor: 35000, Master: 34000, PhD: 30000 }, livingMonthly: 1600, minGpa: 3.5,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 80,
       tests: ["IELTS"], aid: "ANU Chancellor's International Scholarship",
@@ -570,7 +570,7 @@
     },
     {
       id: "unsw", name: "UNSW Sydney", dest: "au", type: "international",
-      city: "Sydney", country: "Australia",
+      city: "Sydney", country: "au",
       tuition: { Bachelor: 38000, Master: 36000, PhD: 32000 }, livingMonthly: 2000, minGpa: 3.4,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 90,
       tests: ["IELTS"], aid: "UNSW International Scholarship",
@@ -587,7 +587,7 @@
     },
     {
       id: "monash", name: "Monash University", dest: "au", type: "international",
-      city: "Melbourne", country: "Australia",
+      city: "Melbourne", country: "au",
       tuition: { Bachelor: 37000, Master: 35000, PhD: 31000 }, livingMonthly: 1800, minGpa: 3.4,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 79,
       tests: ["IELTS"], aid: "Monash International Merit Scholarship",
@@ -606,7 +606,7 @@
     /* ===== Germany (5) ===== */
     {
       id: "tum", name: "Technical University of Munich", dest: "de", type: "international",
-      city: "Munich", country: "Germany",
+      city: "Munich", country: "de",
       tuition: { Bachelor: 300, Master: 300, PhD: 0 }, livingMonthly: 1350, minGpa: 3.5,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 88,
       tests: ["IELTS", "TestAS"], aid: "DAAD and Deutschlandstipendium",
@@ -623,7 +623,7 @@
     },
     {
       id: "lmu", name: "Ludwig Maximilian University of Munich", dest: "de", type: "international",
-      city: "Munich", country: "Germany",
+      city: "Munich", country: "de",
       tuition: { Bachelor: 0, Master: 0, PhD: 0 }, livingMonthly: 1300, minGpa: 3.3,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 88,
       tests: ["IELTS"], aid: "DAAD scholarships",
@@ -640,7 +640,7 @@
     },
     {
       id: "heidelberg", name: "Heidelberg University", dest: "de", type: "international",
-      city: "Heidelberg", country: "Germany",
+      city: "Heidelberg", country: "de",
       tuition: { Bachelor: 1500, Master: 1500, PhD: 0 }, livingMonthly: 1100, minGpa: 3.4,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 88,
       tests: ["IELTS"], aid: "DAAD and Heidelberg University scholarships",
@@ -657,7 +657,7 @@
     },
     {
       id: "rwth", name: "RWTH Aachen University", dest: "de", type: "international",
-      city: "Aachen", country: "Germany",
+      city: "Aachen", country: "de",
       tuition: { Bachelor: 300, Master: 300, PhD: 0 }, livingMonthly: 1000, minGpa: 3.3,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["IELTS", "TestAS"], aid: "DAAD and RWTH scholarships",
@@ -674,7 +674,7 @@
     },
     {
       id: "kit", name: "Karlsruhe Institute of Technology", dest: "de", type: "international",
-      city: "Karlsruhe", country: "Germany",
+      city: "Karlsruhe", country: "de",
       tuition: { Bachelor: 300, Master: 300, PhD: 0 }, livingMonthly: 1050, minGpa: 3.3,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 88,
       tests: ["IELTS"], aid: "DAAD and KIT scholarships",
@@ -693,7 +693,7 @@
     /* ===== Netherlands (4) ===== */
     {
       id: "tudelft", name: "TU Delft", dest: "nl", type: "international",
-      city: "Delft", country: "Netherlands",
+      city: "Delft", country: "nl",
       tuition: { Bachelor: 14000, Master: 18000, PhD: 0 }, livingMonthly: 1450, minGpa: 3.5,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 90,
       tests: ["IELTS"], aid: "Holland Scholarship and Erasmus Mundus",
@@ -710,7 +710,7 @@
     },
     {
       id: "uva", name: "University of Amsterdam", dest: "nl", type: "international",
-      city: "Amsterdam", country: "Netherlands",
+      city: "Amsterdam", country: "nl",
       tuition: { Bachelor: 13000, Master: 19000, PhD: 0 }, livingMonthly: 1600, minGpa: 3.4,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 92,
       tests: ["IELTS"], aid: "Amsterdam Merit Scholarship and Orange Knowledge",
@@ -727,7 +727,7 @@
     },
     {
       id: "leiden", name: "Leiden University", dest: "nl", type: "international",
-      city: "Leiden", country: "Netherlands",
+      city: "Leiden", country: "nl",
       tuition: { Bachelor: 12000, Master: 17000, PhD: 0 }, livingMonthly: 1400, minGpa: 3.3,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 90,
       tests: ["IELTS"], aid: "Leiden University Excellence Scholarship",
@@ -744,7 +744,7 @@
     },
     {
       id: "groningen", name: "University of Groningen", dest: "nl", type: "international",
-      city: "Groningen", country: "Netherlands",
+      city: "Groningen", country: "nl",
       tuition: { Bachelor: 11000, Master: 16000, PhD: 0 }, livingMonthly: 1100, minGpa: 3.2,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 90,
       tests: ["IELTS"], aid: "Groningen Scholarship and Erasmus Mundus",
@@ -763,7 +763,7 @@
     /* ===== Japan (5) ===== */
     {
       id: "tokyo", name: "University of Tokyo", dest: "jp", type: "international",
-      city: "Tokyo", country: "Japan",
+      city: "Tokyo", country: "jp",
       tuition: { Bachelor: 6400, Master: 6400, PhD: 5200 }, livingMonthly: 1200, minGpa: 3.7,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 80,
       tests: ["EJU", "IELTS"], aid: "MEXT and university waivers",
@@ -780,7 +780,7 @@
     },
     {
       id: "kyoto", name: "Kyoto University", dest: "jp", type: "international",
-      city: "Kyoto", country: "Japan",
+      city: "Kyoto", country: "jp",
       tuition: { Bachelor: 5800, Master: 5800, PhD: 5200 }, livingMonthly: 1000, minGpa: 3.6,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 79,
       tests: ["EJU", "IELTS"], aid: "MEXT and university scholarships",
@@ -797,7 +797,7 @@
     },
     {
       id: "osaka", name: "Osaka University", dest: "jp", type: "international",
-      city: "Osaka", country: "Japan",
+      city: "Osaka", country: "jp",
       tuition: { Bachelor: 5800, Master: 5800, PhD: 5200 }, livingMonthly: 1100, minGpa: 3.5,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 79,
       tests: ["EJU", "IELTS"], aid: "MEXT and JASSO",
@@ -814,7 +814,7 @@
     },
     {
       id: "tohoku", name: "Tohoku University", dest: "jp", type: "international",
-      city: "Sendai", country: "Japan",
+      city: "Sendai", country: "jp",
       tuition: { Bachelor: 5800, Master: 5800, PhD: 5200 }, livingMonthly: 900, minGpa: 3.4,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 79,
       tests: ["EJU", "IELTS"], aid: "MEXT and JASSO",
@@ -831,7 +831,7 @@
     },
     {
       id: "kyutech", name: "Tokyo Institute of Technology", dest: "jp", type: "international",
-      city: "Tokyo", country: "Japan",
+      city: "Tokyo", country: "jp",
       tuition: { Bachelor: 5800, Master: 5800, PhD: 5200 }, livingMonthly: 1100, minGpa: 3.5,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 79,
       tests: ["EJU", "IELTS"], aid: "MEXT and JASSO",
@@ -850,7 +850,7 @@
     /* ===== South Korea (4) ===== */
     {
       id: "kaist", name: "KAIST", dest: "kr", type: "international",
-      city: "Daejeon", country: "South Korea",
+      city: "Daejeon", country: "kr",
       tuition: { Bachelor: 7000, Master: 7000, PhD: 4000 }, livingMonthly: 950, minGpa: 3.6,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 83,
       tests: ["IELTS", "SAT"], aid: "KAIST International Student Scholarship",
@@ -867,7 +867,7 @@
     },
     {
       id: "snu", name: "Seoul National University", dest: "kr", type: "international",
-      city: "Seoul", country: "South Korea",
+      city: "Seoul", country: "kr",
       tuition: { Bachelor: 6000, Master: 6000, PhD: 5000 }, livingMonthly: 1000, minGpa: 3.7,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["IELTS"], aid: "SNU Global Scholarship and GKS",
@@ -884,7 +884,7 @@
     },
     {
       id: "yonsei", name: "Yonsei University", dest: "kr", type: "international",
-      city: "Seoul", country: "South Korea",
+      city: "Seoul", country: "kr",
       tuition: { Bachelor: 8000, Master: 9000, PhD: 7000 }, livingMonthly: 1000, minGpa: 3.5,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 83,
       tests: ["IELTS"], aid: "Yonsei International Student Scholarship",
@@ -901,7 +901,7 @@
     },
     {
       id: "korea-uni", name: "Korea University", dest: "kr", type: "international",
-      city: "Seoul", country: "South Korea",
+      city: "Seoul", country: "kr",
       tuition: { Bachelor: 8000, Master: 9000, PhD: 7000 }, livingMonthly: 1000, minGpa: 3.5,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["IELTS"], aid: "KU International Student Scholarship",
@@ -920,7 +920,7 @@
     /* ===== Singapore (2) ===== */
     {
       id: "nus", name: "National University of Singapore", dest: "sg", type: "international",
-      city: "Singapore", country: "Singapore",
+      city: "Singapore", country: "sg",
       tuition: { Bachelor: 24000, Master: 30000, PhD: 0 }, livingMonthly: 1900, minGpa: 3.8,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 92,
       tests: ["IELTS", "SAT"], aid: "Global Merit Scholarship and research stipends",
@@ -937,7 +937,7 @@
     },
     {
       id: "ntu", name: "Nanyang Technological University", dest: "sg", type: "international",
-      city: "Singapore", country: "Singapore",
+      city: "Singapore", country: "sg",
       tuition: { Bachelor: 23000, Master: 28000, PhD: 0 }, livingMonthly: 1800, minGpa: 3.7,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 90,
       tests: ["IELTS"], aid: "NTU Nanyang Scholarship and ASEAN Scholarship",
@@ -956,7 +956,7 @@
     /* ===== China (3) ===== */
     {
       id: "tsinghua", name: "Tsinghua University", dest: "cn", type: "international",
-      city: "Beijing", country: "China",
+      city: "Beijing", country: "cn",
       tuition: { Bachelor: 6000, Master: 7000, PhD: 6000 }, livingMonthly: 900, minGpa: 3.6,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 85,
       tests: ["HSK or IELTS"], aid: "Chinese Government Scholarship and Schwarzman Scholars",
@@ -973,7 +973,7 @@
     },
     {
       id: "pku", name: "Peking University", dest: "cn", type: "international",
-      city: "Beijing", country: "China",
+      city: "Beijing", country: "cn",
       tuition: { Bachelor: 5000, Master: 6000, PhD: 5000 }, livingMonthly: 850, minGpa: 3.6,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 85,
       tests: ["HSK or IELTS"], aid: "Chinese Government Scholarship",
@@ -990,7 +990,7 @@
     },
     {
       id: "fudan", name: "Fudan University", dest: "cn", type: "international",
-      city: "Shanghai", country: "China",
+      city: "Shanghai", country: "cn",
       tuition: { Bachelor: 5000, Master: 6000, PhD: 5000 }, livingMonthly: 950, minGpa: 3.5,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["HSK or IELTS"], aid: "Chinese Government Scholarship",
@@ -1009,7 +1009,7 @@
     /* ===== Türkiye (2) ===== */
     {
       id: "bogazici", name: "Bogazici University", dest: "tr", type: "international",
-      city: "Istanbul", country: "Türkiye",
+      city: "Istanbul", country: "tr",
       tuition: { Bachelor: 600, Master: 800, PhD: 600 }, livingMonthly: 700, minGpa: 3.4,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 78,
       tests: ["IELTS", "SAT"], aid: "Türkiye Bursları",
@@ -1026,7 +1026,7 @@
     },
     {
       id: "itu", name: "Istanbul Technical University", dest: "tr", type: "international",
-      city: "Istanbul", country: "Türkiye",
+      city: "Istanbul", country: "tr",
       tuition: { Bachelor: 500, Master: 700, PhD: 500 }, livingMonthly: 700, minGpa: 3.3,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 78,
       tests: ["IELTS"], aid: "Türkiye Bursları",
@@ -1048,7 +1048,7 @@
     */
     {
       id: "itb", name: "Institut Teknologi Bandung", dest: "id", type: "PTN",
-      city: "Bandung, Jawa Barat", country: "Indonesia",
+      city: "Bandung, Jawa Barat", country: "id",
       tuition: { Bachelor: 10, Master: 16, PhD: 13 }, livingMonthly: 175, minGpa: 3.0,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 80,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah and LPDP",
@@ -1066,7 +1066,7 @@
     },
     {
       id: "ui", name: "Universitas Indonesia", dest: "id", type: "PTN",
-      city: "Depok, Jawa Barat", country: "Indonesia",
+      city: "Depok, Jawa Barat", country: "id",
       tuition: { Bachelor: 10, Master: 16, PhD: 13 }, livingMonthly: 218, minGpa: 3.0,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 80,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah and LPDP",
@@ -1084,7 +1084,7 @@
     },
     {
       id: "ugm", name: "Universitas Gadjah Mada", dest: "id", type: "PTN",
-      city: "Yogyakarta, Jawa Tengah", country: "Indonesia",
+      city: "Yogyakarta, Jawa Tengah", country: "id",
       tuition: { Bachelor: 10, Master: 16, PhD: 13 }, livingMonthly: 150, minGpa: 2.9,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 80,
       tests: ["UTBK", "TKA"], aid: "UGM Mandiri Beasiswa and KIP Kuliah",
@@ -1102,7 +1102,7 @@
     },
     {
       id: "its", name: "Institut Teknologi Sepuluh Nopember", dest: "id", type: "PTN",
-      city: "Surabaya, Jawa Timur", country: "Indonesia",
+      city: "Surabaya, Jawa Timur", country: "id",
       tuition: { Bachelor: 8, Master: 14, PhD: 10 }, livingMonthly: 156, minGpa: 2.9,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 80,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1120,7 +1120,7 @@
     },
     {
       id: "ipb", name: "IPB University", dest: "id", type: "PTN",
-      city: "Bogor, Jawa Barat", country: "Indonesia",
+      city: "Bogor, Jawa Barat", country: "id",
       tuition: { Bachelor: 8, Master: 14, PhD: 10 }, livingMonthly: 162, minGpa: 2.8,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1138,7 +1138,7 @@
     },
     {
       id: "unpad", name: "Universitas Padjadjaran", dest: "id", type: "PTN",
-      city: "Bandung, Jawa Barat", country: "Indonesia",
+      city: "Bandung, Jawa Barat", country: "id",
       tuition: { Bachelor: 8, Master: 14, PhD: 10 }, livingMonthly: 175, minGpa: 2.8,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1156,7 +1156,7 @@
     },
     {
       id: "undip", name: "Universitas Diponegoro", dest: "id", type: "PTN",
-      city: "Semarang, Jawa Tengah", country: "Indonesia",
+      city: "Semarang, Jawa Tengah", country: "id",
       tuition: { Bachelor: 8, Master: 14, PhD: 10 }, livingMonthly: 144, minGpa: 2.8,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1174,7 +1174,7 @@
     },
     {
       id: "unair", name: "Universitas Airlangga", dest: "id", type: "PTN",
-      city: "Surabaya, Jawa Timur", country: "Indonesia",
+      city: "Surabaya, Jawa Timur", country: "id",
       tuition: { Bachelor: 8, Master: 14, PhD: 10 }, livingMonthly: 156, minGpa: 2.9,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1192,7 +1192,7 @@
     },
     {
       id: "ub", name: "Universitas Brawijaya", dest: "id", type: "PTN",
-      city: "Malang, Jawa Timur", country: "Indonesia",
+      city: "Malang, Jawa Timur", country: "id",
       tuition: { Bachelor: 8, Master: 14, PhD: 10 }, livingMonthly: 138, minGpa: 2.8,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1210,7 +1210,7 @@
     },
     {
       id: "uns", name: "Universitas Sebelas Maret", dest: "id", type: "PTN",
-      city: "Surakarta, Jawa Tengah", country: "Indonesia",
+      city: "Surakarta, Jawa Tengah", country: "id",
       tuition: { Bachelor: 7, Master: 12, PhD: 9 }, livingMonthly: 131, minGpa: 2.8,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1228,7 +1228,7 @@
     },
     {
       id: "upi", name: "Universitas Pendidikan Indonesia", dest: "id", type: "PTN",
-      city: "Bandung, Jawa Barat", country: "Indonesia",
+      city: "Bandung, Jawa Barat", country: "id",
       tuition: { Bachelor: 6, Master: 11, PhD: 8 }, livingMonthly: 175, minGpa: 2.7,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1246,7 +1246,7 @@
     },
     {
       id: "unhas", name: "Universitas Hasanuddin", dest: "id", type: "PTN",
-      city: "Makassar, Sulawesi Selatan", country: "Indonesia",
+      city: "Makassar, Sulawesi Selatan", country: "id",
       tuition: { Bachelor: 8, Master: 13, PhD: 10 }, livingMonthly: 138, minGpa: 2.8,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1264,7 +1264,7 @@
     },
     {
       id: "unud", name: "Universitas Udayana", dest: "id", type: "PTN",
-      city: "Denpasar, Bali", country: "Indonesia",
+      city: "Denpasar, Bali", country: "id",
       tuition: { Bachelor: 7, Master: 11, PhD: 9 }, livingMonthly: 150, minGpa: 2.7,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1282,7 +1282,7 @@
     },
     {
       id: "untad", name: "Universitas Tadulako", dest: "id", type: "PTN",
-      city: "Palu, Sulawesi Tengah", country: "Indonesia",
+      city: "Palu, Sulawesi Tengah", country: "id",
       tuition: { Bachelor: 7, Master: 11, PhD: 9 }, livingMonthly: 119, minGpa: 2.6,
       ielts: 5.5, ieltsCat: ielts(5.0, 5.0, 5.0, 5.0, 5.5), toefl: 70,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1300,7 +1300,7 @@
     },
     {
       id: "unsyiah", name: "Universitas Syiah Kuala", dest: "id", type: "PTN",
-      city: "Banda Aceh, Aceh", country: "Indonesia",
+      city: "Banda Aceh, Aceh", country: "id",
       tuition: { Bachelor: 7, Master: 11, PhD: 9 }, livingMonthly: 125, minGpa: 2.7,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1318,7 +1318,7 @@
     },
     {
       id: "unila", name: "Universitas Lampung", dest: "id", type: "PTN",
-      city: "Bandar Lampung, Lampung", country: "Indonesia",
+      city: "Bandar Lampung, Lampung", country: "id",
       tuition: { Bachelor: 7, Master: 11, PhD: 9 }, livingMonthly: 138, minGpa: 2.7,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1336,7 +1336,7 @@
     },
     {
       id: "unp", name: "Universitas Negeri Padang", dest: "id", type: "PTN",
-      city: "Padang, Sumatera Barat", country: "Indonesia",
+      city: "Padang, Sumatera Barat", country: "id",
       tuition: { Bachelor: 6, Master: 10, PhD: 8 }, livingMonthly: 131, minGpa: 2.7,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1354,7 +1354,7 @@
     },
     {
       id: "unsoed", name: "Universitas Jenderal Soedirman", dest: "id", type: "PTN",
-      city: "Purwokerto, Jawa Tengah", country: "Indonesia",
+      city: "Purwokerto, Jawa Tengah", country: "id",
       tuition: { Bachelor: 6, Master: 10, PhD: 8 }, livingMonthly: 128, minGpa: 2.7,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1373,7 +1373,7 @@
     /* ===== ADDITIONAL INDONESIAN UNIVERSITIES ===== */
     {
       id: "uin-jakarta", name: "UIN Syarif Hidayatullah Jakarta", dest: "id", type: "PTN",
-      city: "Jakarta Selatan, DKI Jakarta", country: "Indonesia",
+      city: "Jakarta Selatan, DKI Jakarta", country: "id",
       tuition: { Bachelor: 5, Master: 8, PhD: 7 }, livingMonthly: 180, minGpa: 2.75,
       ielts: 5.5, ieltsCat: ielts(5.0, 5.0, 5.0, 5.0, 5.5), toefl: 70,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1385,7 +1385,7 @@
     },
     {
       id: "unair", name: "Universitas Airlangga", dest: "id", type: "PTN",
-      city: "Surabaya, Jawa Timur", country: "Indonesia",
+      city: "Surabaya, Jawa Timur", country: "id",
       tuition: { Bachelor: 7, Master: 12, PhD: 10 }, livingMonthly: 150, minGpa: 2.75,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1397,7 +1397,7 @@
     },
     {
       id: "unhas", name: "Universitas Hasanuddin", dest: "id", type: "PTN",
-      city: "Makassar, Sulawesi Selatan", country: "Indonesia",
+      city: "Makassar, Sulawesi Selatan", country: "id",
       tuition: { Bachelor: 6, Master: 10, PhD: 8 }, livingMonthly: 130, minGpa: 2.75,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1409,7 +1409,7 @@
     },
     {
       id: "unand", name: "Universitas Andalas", dest: "id", type: "PTN",
-      city: "Padang, Sumatera Barat", country: "Indonesia",
+      city: "Padang, Sumatera Barat", country: "id",
       tuition: { Bachelor: 5, Master: 9, PhD: 7 }, livingMonthly: 120, minGpa: 2.75,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1421,7 +1421,7 @@
     },
     {
       id: "unsri", name: "Universitas Sriwijaya", dest: "id", type: "PTN",
-      city: "Palembang, Sumatera Selatan", country: "Indonesia",
+      city: "Palembang, Sumatera Selatan", country: "id",
       tuition: { Bachelor: 5, Master: 9, PhD: 7 }, livingMonthly: 115, minGpa: 2.75,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1433,7 +1433,7 @@
     },
     {
       id: "untan", name: "Universitas Tanjungpura", dest: "id", type: "PTN",
-      city: "Pontianak, Kalimantan Barat", country: "Indonesia",
+      city: "Pontianak, Kalimantan Barat", country: "id",
       tuition: { Bachelor: 5, Master: 8, PhD: 7 }, livingMonthly: 110, minGpa: 2.75,
       ielts: 5.5, ieltsCat: ielts(5.0, 5.0, 5.0, 5.0, 5.5), toefl: 70,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1445,7 +1445,7 @@
     },
     {
       id: "unmul", name: "Universitas Mulawarman", dest: "id", type: "PTN",
-      city: "Samarinda, Kalimantan Timur", country: "Indonesia",
+      city: "Samarinda, Kalimantan Timur", country: "id",
       tuition: { Bachelor: 5, Master: 8, PhD: 7 }, livingMonthly: 115, minGpa: 2.75,
       ielts: 5.5, ieltsCat: ielts(5.0, 5.0, 5.0, 5.0, 5.5), toefl: 70,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1457,7 +1457,7 @@
     },
     {
       id: "unsrat", name: "Universitas Sam Ratulangi", dest: "id", type: "PTN",
-      city: "Manado, Sulawesi Utara", country: "Indonesia",
+      city: "Manado, Sulawesi Utara", country: "id",
       tuition: { Bachelor: 5, Master: 8, PhD: 7 }, livingMonthly: 110, minGpa: 2.75,
       ielts: 5.5, ieltsCat: ielts(5.0, 5.0, 5.0, 5.0, 5.5), toefl: 70,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1469,7 +1469,7 @@
     },
     {
       id: "unud", name: "Universitas Udayana", dest: "id", type: "PTN",
-      city: "Denpasar, Bali", country: "Indonesia",
+      city: "Denpasar, Bali", country: "id",
       tuition: { Bachelor: 6, Master: 10, PhD: 8 }, livingMonthly: 140, minGpa: 2.75,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1481,7 +1481,7 @@
     },
     {
       id: "unram", name: "Universitas Mataram", dest: "id", type: "PTN",
-      city: "Mataram, Nusa Tenggara Barat", country: "Indonesia",
+      city: "Mataram, Nusa Tenggara Barat", country: "id",
       tuition: { Bachelor: 4, Master: 7, PhD: 6 }, livingMonthly: 100, minGpa: 2.75,
       ielts: 5.5, ieltsCat: ielts(5.0, 5.0, 5.0, 5.0, 5.5), toefl: 70,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1493,7 +1493,7 @@
     },
     {
       id: "unpatti", name: "Universitas Pattimura", dest: "id", type: "PTN",
-      city: "Ambon, Maluku", country: "Indonesia",
+      city: "Ambon, Maluku", country: "id",
       tuition: { Bachelor: 4, Master: 7, PhD: 6 }, livingMonthly: 95, minGpa: 2.75,
       ielts: 5.5, ieltsCat: ielts(5.0, 5.0, 5.0, 5.0, 5.5), toefl: 70,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1505,7 +1505,7 @@
     },
     {
       id: "uncen", name: "Universitas Cenderawasih", dest: "id", type: "PTN",
-      city: "Jayapura, Papua", country: "Indonesia",
+      city: "Jayapura, Papua", country: "id",
       tuition: { Bachelor: 4, Master: 7, PhD: 6 }, livingMonthly: 100, minGpa: 2.5,
       ielts: 5.0, ieltsCat: ielts(4.5, 4.5, 4.5, 4.5, 5.0), toefl: 60,
       tests: ["UTBK", "TKA"], aid: "KIP Kuliah",
@@ -1517,7 +1517,7 @@
     },
     {
       id: "unipa", name: "Universitas Papua", dest: "id", type: "PTN",
-      city: "Manokwari, Papua Barat", country: "Indonesia",
+      city: "Manokwari, Papua Barat", country: "id",
       tuition: { Bachelor: 4, Master: 7, PhD: 0 }, livingMonthly: 95, minGpa: 2.5,
       ielts: 5.0, ieltsCat: ielts(4.5, 4.5, 4.5, 4.5, 5.0), toefl: 60,
       tests: ["UTBK"], aid: "KIP Kuliah",
@@ -1529,7 +1529,7 @@
     },
     {
       id: "uib", name: "Universitas Internasional Batam", dest: "id", type: "PTS",
-      city: "Batam, Kepulauan Riau", country: "Indonesia",
+      city: "Batam, Kepulauan Riau", country: "id",
       tuition: { Bachelor: 8, Master: 12, PhD: 0 }, livingMonthly: 120, minGpa: 2.75,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["TKA"], aid: "Internal scholarships available",
@@ -1541,7 +1541,7 @@
     },
     {
       id: "unika", name: "Universitas Katolik Indonesia", dest: "id", type: "PTS",
-      city: "Jakarta", country: "Indonesia",
+      city: "Jakarta", country: "id",
       tuition: { Bachelor: 7, Master: 10, PhD: 0 }, livingMonthly: 170, minGpa: 2.75,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["TKA"], aid: "Internal scholarships available",
@@ -1553,7 +1553,7 @@
     },
     {
       id: "telkom-u", name: "Telkom University", dest: "id", type: "PTS",
-      city: "Bandung, Jawa Barat", country: "Indonesia",
+      city: "Bandung, Jawa Barat", country: "id",
       tuition: { Bachelor: 8, Master: 12, PhD: 10 }, livingMonthly: 140, minGpa: 2.75,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["TKA"], aid: "Telkom Scholarship and internal awards",
@@ -1565,7 +1565,7 @@
     },
     {
       id: "binus-online", name: "BINUS Online University", dest: "id", type: "PTS",
-      city: "Jakarta", country: "Indonesia",
+      city: "Jakarta", country: "id",
       tuition: { Bachelor: 7, Master: 11, PhD: 0 }, livingMonthly: 160, minGpa: 2.75,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["TKA"], aid: "Internal scholarships available",
@@ -1577,7 +1577,7 @@
     },
     {
       id: "pelita-harapan", name: "Universitas Pelita Harapan", dest: "id", type: "PTS",
-      city: "Tangerang, Banten", country: "Indonesia",
+      city: "Tangerang, Banten", country: "id",
       tuition: { Bachelor: 10, Master: 15, PhD: 0 }, livingMonthly: 170, minGpa: 2.75,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 90,
       tests: ["TKA"], aid: "Internal scholarships available",
@@ -1589,7 +1589,7 @@
     },
     {
       id: "pradita", name: "Universitas Pradita", dest: "id", type: "PTS",
-      city: "Tangerang, Banten", country: "Indonesia",
+      city: "Tangerang, Banten", country: "id",
       tuition: { Bachelor: 9, Master: 13, PhD: 0 }, livingMonthly: 160, minGpa: 2.75,
       ielts: 6.0, ieltsCat: ielts(5.5, 5.5, 5.5, 5.5, 6.0), toefl: 80,
       tests: ["TKA"], aid: "Internal scholarships available",
@@ -1602,7 +1602,7 @@
     /* ===== ADDITIONAL INTERNATIONAL UNIVERSITIES ===== */
     {
       id: "yale", name: "Yale University", dest: "us", type: "international",
-      city: "New Haven, CT", country: "United States",
+      city: "New Haven, CT", country: "us",
       tuition: { Bachelor: 67000, Master: 45000, PhD: 0 }, livingMonthly: 2200, minGpa: 3.9,
       ielts: 7.5, ieltsCat: ielts(7.0, 7.0, 7.0, 7.0, 7.5), toefl: 100,
       tests: ["SAT/ACT", "GRE (grad)"], aid: "Need-based aid covering full demonstrated need",
@@ -1614,7 +1614,7 @@
     },
     {
       id: "princeton", name: "Princeton University", dest: "us", type: "international",
-      city: "Princeton, NJ", country: "United States",
+      city: "Princeton, NJ", country: "us",
       tuition: { Bachelor: 59000, Master: 56000, PhD: 0 }, livingMonthly: 2100, minGpa: 3.9,
       ielts: 7.5, ieltsCat: ielts(7.0, 7.0, 7.0, 7.0, 7.5), toefl: 100,
       tests: ["SAT/ACT", "GRE (grad)"], aid: "Need-based aid covering full demonstrated need",
@@ -1626,7 +1626,7 @@
     },
     {
       id: "columbia", name: "Columbia University", dest: "us", type: "international",
-      city: "New York, NY", country: "United States",
+      city: "New York, NY", country: "us",
       tuition: { Bachelor: 68000, Master: 55000, PhD: 0 }, livingMonthly: 2500, minGpa: 3.9,
       ielts: 7.5, ieltsCat: ielts(7.0, 7.0, 7.0, 7.0, 7.5), toefl: 100,
       tests: ["SAT/ACT", "GRE (grad)"], aid: "Need-based aid for international students",
@@ -1638,7 +1638,7 @@
     },
     {
       id: "eth", name: "ETH Zurich", dest: "ch", type: "international",
-      city: "Zurich", country: "Switzerland",
+      city: "Zurich", country: "ch",
       tuition: { Bachelor: 1600, Master: 1600, PhD: 0 }, livingMonthly: 1800, minGpa: 3.7,
       ielts: 7.0, ieltsCat: ielts(6.5, 6.5, 6.5, 6.5, 7.0), toefl: 100,
       tests: ["GRE (grad)"], aid: "ETH Excellence Scholarship",
@@ -1650,7 +1650,7 @@
     },
     {
       id: "epfl", name: "EPFL Lausanne", dest: "ch", type: "international",
-      city: "Lausanne", country: "Switzerland",
+      city: "Lausanne", country: "ch",
       tuition: { Bachelor: 1600, Master: 1600, PhD: 0 }, livingMonthly: 1700, minGpa: 3.7,
       ielts: 7.0, ieltsCat: ielts(6.5, 6.5, 6.5, 6.5, 7.0), toefl: 100,
       tests: ["GRE (grad)"], aid: "EPFL Excellence Fellowship",
@@ -1662,7 +1662,7 @@
     },
     {
       id: "tue", name: "TU Eindhoven", dest: "nl", type: "international",
-      city: "Eindhoven", country: "Netherlands",
+      city: "Eindhoven", country: "nl",
       tuition: { Bachelor: 12000, Master: 17000, PhD: 0 }, livingMonthly: 1400, minGpa: 3.5,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 90,
       tests: ["GRE (grad)"], aid: "TU/e Merit Scholarship",
@@ -1674,7 +1674,7 @@
     },
     {
       id: "kyoto-u", name: "Kyoto University", dest: "jp", type: "international",
-      city: "Kyoto", country: "Japan",
+      city: "Kyoto", country: "jp",
       tuition: { Bachelor: 5800, Master: 5800, PhD: 5200 }, livingMonthly: 1100, minGpa: 3.6,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 90,
       tests: ["EJU", "IELTS"], aid: "MEXT and university scholarships",
@@ -1686,7 +1686,7 @@
     },
     {
       id: "snu", name: "Seoul National University", dest: "kr", type: "international",
-      city: "Seoul", country: "South Korea",
+      city: "Seoul", country: "kr",
       tuition: { Bachelor: 6000, Master: 6000, PhD: 4000 }, livingMonthly: 950, minGpa: 3.7,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 90,
       tests: ["IELTS", "TOPIK"], aid: "SNU Global Scholarship",
@@ -1698,7 +1698,7 @@
     },
     {
       id: "unsw", name: "University of New South Wales", dest: "au", type: "international",
-      city: "Sydney", country: "Australia",
+      city: "Sydney", country: "au",
       tuition: { Bachelor: 35000, Master: 34000, PhD: 30000 }, livingMonthly: 1800, minGpa: 3.4,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 90,
       tests: ["IELTS"], aid: "Future Change Maker Scholarship",
@@ -1710,7 +1710,7 @@
     },
     {
       id: "sydney", name: "University of Sydney", dest: "au", type: "international",
-      city: "Sydney", country: "Australia",
+      city: "Sydney", country: "au",
       tuition: { Bachelor: 38000, Master: 36000, PhD: 32000 }, livingMonthly: 1900, minGpa: 3.5,
       ielts: 7.0, ieltsCat: ielts(6.5, 6.5, 6.5, 6.5, 7.0), toefl: 100,
       tests: ["IELTS"], aid: "Sydney International Scholarship",
@@ -1722,7 +1722,7 @@
     },
     {
       id: "monash", name: "Monash University", dest: "au", type: "international",
-      city: "Melbourne", country: "Australia",
+      city: "Melbourne", country: "au",
       tuition: { Bachelor: 36000, Master: 35000, PhD: 31000 }, livingMonthly: 1700, minGpa: 3.4,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 90,
       tests: ["IELTS"], aid: "Monash International Merit Scholarship",
@@ -1734,7 +1734,7 @@
     },
     {
       id: "mcgill", name: "McGill University", dest: "ca", type: "international",
-      city: "Montreal, QC", country: "Canada",
+      city: "Montreal, QC", country: "ca",
       tuition: { Bachelor: 35000, Master: 28000, PhD: 12000 }, livingMonthly: 1600, minGpa: 3.5,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 90,
       tests: ["SAT/ACT (optional)"], aid: "Entrance Bursary Program",
@@ -1746,7 +1746,7 @@
     },
     {
       id: "uoft", name: "University of Toronto", dest: "ca", type: "international",
-      city: "Toronto, ON", country: "Canada",
+      city: "Toronto, ON", country: "ca",
       tuition: { Bachelor: 45000, Master: 35000, PhD: 12000 }, livingMonthly: 1800, minGpa: 3.7,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 90,
       tests: ["SAT/ACT (optional)"], aid: "Lester B. Pearson and financial aid",
@@ -1758,7 +1758,7 @@
     },
     {
       id: "anu", name: "Australian National University", dest: "au", type: "international",
-      city: "Canberra", country: "Australia",
+      city: "Canberra", country: "au",
       tuition: { Bachelor: 33000, Master: 32000, PhD: 28000 }, livingMonthly: 1700, minGpa: 3.5,
       ielts: 6.5, ieltsCat: ielts(6.0, 6.0, 6.0, 6.0, 6.5), toefl: 90,
       tests: ["IELTS"], aid: "Chancellor's International Scholarship",
@@ -1770,7 +1770,7 @@
     },
     {
       id: "ucl", name: "University College London", dest: "uk", type: "international",
-      city: "London", country: "United Kingdom",
+      city: "London", country: "gb",
       tuition: { Bachelor: 35000, Master: 33000, PhD: 28000 }, livingMonthly: 2000, minGpa: 3.6,
       ielts: 7.0, ieltsCat: ielts(6.5, 6.5, 6.5, 6.5, 7.0), toefl: 100,
       tests: ["IELTS"], aid: "UCL Global Masters Scholarship",

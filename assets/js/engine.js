@@ -36,7 +36,12 @@
 
   const byId = (list, id) => list.find((x) => x.id === id);
   const origin = (id) => byId(D.ORIGINS, id) || D.ORIGINS[0];
-  const destination = (id) => byId(D.DESTINATIONS, id) || D.DESTINATIONS[0];
+  const destination = (id) => {
+    const d = byId(D.DESTINATIONS, id);
+    if (d) return d;
+    const code = String(id || "").toUpperCase();
+    return { id: id || "unknown", name: code || "Unknown destination", code: code, region: "Other", flag: "🌐", language: "English", tuition: { Bachelor: [0, 10000], Master: [0, 12000], PhD: [0, 8000] }, livingMonthly: 800, insuranceYear: 200, visaFee: 100, flights: 600, applicationFee: 0, duration: { Bachelor: 4, Master: 2, PhD: 4 }, work: "Work rights vary by country", intakes: ["September"], summary: "Destination details not yet fully profiled.", highlights: ["Verify costs with the institution"], universities: [] };
+  };
   const university = (id) => byId(D.UNIVERSITIES, id);
   const fieldName = (id) => (byId(D.FIELDS, id) || { name: "All fields" }).name;
   const matchCategory = (id) => byId(D.MATCH_CATEGORIES, id) || D.MATCH_CATEGORIES[0];

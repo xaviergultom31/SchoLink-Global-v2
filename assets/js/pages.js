@@ -394,7 +394,7 @@
     const list = state.destRegion === "All" ? D.DESTINATIONS : D.DESTINATIONS.filter((d) => d.region === state.destRegion);
     return `<main>
       ${pageHero(t("Destinations"), t("Where could you study?"),
-        t("Compare tuition, living costs and work rights across 12 destinations — then see which scholarships make them affordable."))}
+        t("Compare tuition, living costs and work rights across {n} destinations — then see which scholarships make them affordable.", { n: D.DESTINATIONS.length }))}
       <section class="section section--tight">
         <div class="chips-row">${regions.map((r) => `<button class="chip${state.destRegion === r ? " active" : ""}" data-action="dest-region" data-value="${esc(r)}">${esc(r)}</button>`).join("")}</div>
         <div class="dest-grid dest-grid--all">${list.map((d) => destCard(d)).join("")}</div>
